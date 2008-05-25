@@ -18,4 +18,5 @@ describe Evaluator, "do it big like the rappers" do
     @test = Evaluator.new("hello { i = 0 }")
     @test.keys[:hello] = { :i => 0 }
   end
+
 end
