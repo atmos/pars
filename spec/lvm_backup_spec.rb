@@ -22,4 +22,16 @@ describe LvmBackup, "parsing" do
       puts "FAIL"
     end
   end
+  it "should do it big like the r kelly" do
+    parser = LvmBackupParser.new
+    pp parser
+    if parser.parse('foo = "bar" ')
+      pp parser
+      puts "success"
+    else
+      pp parser
+      puts "FAIL"
+    end
+  end
+  
 end
