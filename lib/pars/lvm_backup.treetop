@@ -4,10 +4,6 @@ grammar LvmBackup
     string " { " string " }"
   end
   
-  rule string
-    [A-Za-z_]+
-  end
-  
   # rule string
   #   '"' (!'"' . / '\"')* '"'
   # end
@@ -18,4 +14,7 @@ grammar LvmBackup
   # rule logical_volume
   #   "zomg"
   # end
+  rule string
+    [A-Za-z_]+
+  end
 end
