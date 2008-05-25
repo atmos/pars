@@ -30,6 +30,10 @@ grammar LvmBackup
     [0-9]+
   end
 
+  rule quoted_string
+    '"' (!'"' . / '\"')* '"' <QuotedStringOperation>
+  end
+  
   rule string
     [A-Za-z_]+ <StringLiteral>
   end

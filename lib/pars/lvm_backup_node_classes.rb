@@ -3,18 +3,19 @@ module LvmBackup
     def eval(env={})
       env[varname.text_value] = varvalue.text_value
       env
+      
     end
   end
 
   class ArrayListOperation < Treetop::Runtime::SyntaxNode
     def eval(env={})
       # puts self
-      pp env
-      pp varname.text_value
-      pp list
+      # pp env
+      # pp varname.text_value
+      # pp list
       env[varname.text_value] ||= [ ] #varvalue.text_value
-      env[varname.text_value].push(list.elements.map { |e| e.text_value })
-      pp env
+      env[varname.text_value].push(list.elements.find_all { |e| e.kind_of?(LvmBackup::StringLiteral) }.map { |e| e.text_value })
+      env[varname.text_value].flatten!
       env
     end
   end
@@ -35,6 +36,13 @@ module LvmBackup
       env
     end
   end
+
+  class QuotedStringLiteral < Treetop::Runtime::SyntaxNode
+    def eval(env={})
+      text_value
+    end
+  end
+
   
   class StringLiteral < Treetop::Runtime::SyntaxNode
     def eval(env={})

@@ -16,9 +16,9 @@ describe LvmBackup, "parsing" do
     it "should have a varname for the left hand side of the expression" do
       @result.varname.text_value.should == 'foo'        
     end
-    it "should have a varvalue for the right hand side of the expression" do
-      @result.list.text_value.should == ["RESIZEABLE"]
-    end
+    # it "should have a varvalue for the right hand side of the expression" do
+    #   @result.list.text_value.should == ["RESIZEABLE"]
+    # end
     
     describe "evaluated output" do
       before(:all) do
