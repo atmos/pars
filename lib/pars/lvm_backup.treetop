@@ -1,0 +1,11 @@
+grammar LvmBackup
+  rule description
+    "foo = 'bar'"
+  end
+  rule physical_volume
+    "zomg"
+  end
+  rule logical_volume
+    "zomg"
+  end
+end
