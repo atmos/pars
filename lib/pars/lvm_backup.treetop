@@ -1,20 +1,31 @@
 grammar LvmBackup
+  rule expression
+    block / assignment / string
+  end
+  
+  rule assignment
+    varname:string space "=" space "\"" varvalue:string "\"" <AssignmentOperation> /
+    varname:string space "=" space varvalue:number <AssignmentOperation>
+  end
   
   rule block
-    string " { " string " }"
+    # string " { " block " }"
+    assignment / name:string space "{" space block_contents:block space "}" <BlockOperation> / string
   end
   
-  # rule string
-  #   '"' (!'"' . / '\"')* '"'
-  # end
-  rule physical_volume
-    string
+  rule non_space_char
+    ![ \n] .
   end
   
-  # rule logical_volume
-  #   "zomg"
-  # end
+  rule space
+    [ \n]*
+  end
+  
+  rule number
+    [0-9]+
+  end
+
   rule string
-    [A-Za-z_]+
+    [A-Za-z_]+ <StringLiteral>
   end
 end
