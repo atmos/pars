@@ -3,9 +3,14 @@ grammar LvmBackup
     block / assignment / string
   end
   
+  rule array_list
+    "\"" string "\"" / "\"" string "\"," space array_list+ / .
+  end
+  
   rule assignment
     varname:string space "=" space "\"" varvalue:string "\"" <AssignmentOperation> /
-    varname:string space "=" space varvalue:number <AssignmentOperation>
+    varname:string space "=" space varvalue:number <AssignmentOperation> /
+    varname:string space "=" space "[" list:array_list "]" <ArrayListOperation>
   end
   
   rule block

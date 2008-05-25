@@ -117,5 +117,53 @@ describe LvmBackup, "parsing" do
         end        
       end
     end
+    
+    describe "to an array" do
+      before(:all) do
+        @result = @parser.parse('foo = ["RESIZEABLE"]')
+        # @result = @parser.parse('foo = ["RESIZEABLE", "READ", "WRITE", "CLUSTERED"]')        
+
+      end
+      it "should return a kind of LvmBackup::AssignemtnOperation" do
+        @result.should be_a_kind_of(LvmBackup::ArrayListOperation)
+      end
+      it "should have a varname for the left hand side of the expression" do
+        @result.varname.text_value.should == 'foo'        
+      end
+      it "should have a varvalue for the right hand side of the expression" do
+        @result.list.text_value.should == ["RESIZEABLE"]
+      end
+      describe "evaluated output" do
+        before(:all) do
+          @evaluated_result = @result.eval({})
+        end
+        it "should return a hash of the evaluated string" do
+          @evaluated_result.should be_a_kind_of(Hash)          
+        end
+        it "should be able to lookup the variable name" do
+          # @evaluated_result['foo'].should eql(%w(RESIZEABLE READ WRITE CLUSTERED))
+          @evaluated_result['foo'].should eql(%w(RESIZEABLE))          
+          
+        end
+      end
+    end
+    # describe "a sequence of assignments" do
+    #   before(:all) do
+    #     @result = @parser.parse("foo = 42\nbar = \"fourty-two\"")
+    #   end
+    #   it "should return a non nil result" do
+    #     @result.should_not be_nil      
+    #   end
+    #   it "should return a kind of LvmBackup::AssignemtnOperation" do
+    #     @result.should be_a_kind_of(LvmBackup::AssignmentOperation)        
+    #   end
+    #   it "should have a varname for the left hand side of the expression" do
+    #     @result.varname.text_value.should == 'foo'        
+    #   end
+    #   it "should have a varvalue for the right hand side of the expression" do
+    #     @result.varvalue.text_value.should == '42'        
+    #   end
+    #   
+    # end
   end
 end
