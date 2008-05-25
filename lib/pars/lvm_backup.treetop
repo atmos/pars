@@ -1,11 +1,21 @@
 grammar LvmBackup
-  rule description
-    "foo = 'bar'"
+  
+  rule block
+    string " { " string " }"
   end
+  
+  rule string
+    [A-Za-z_]+
+  end
+  
+  # rule string
+  #   '"' (!'"' . / '\"')* '"'
+  # end
   rule physical_volume
-    "zomg"
+    string
   end
-  rule logical_volume
-    "zomg"
-  end
+  
+  # rule logical_volume
+  #   "zomg"
+  # end
 end
