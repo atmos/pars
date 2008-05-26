@@ -6,7 +6,7 @@ describe LvmBackup, "parsing" do
   end
   describe "ey04-data00 as input" do
     before(:all) do
-      @result = @parser.parse(File.read(File.dirname(__FILE__)+'/../fixtures/ey04-data00'))
+      @result = @parser.parse(File.read(File.dirname(__FILE__)+'/../fixtures/lvm_backups/ey04-data00'))
     end
     it "shouldn't be nil" do
       @result.should_not be_nil
@@ -35,7 +35,7 @@ describe LvmBackup, "parsing" do
   end
   describe "should be able to handle all of the test fixtures" do
     it "succesful parsing" do
-      Dir[File.dirname(__FILE__)+'/../fixtures/*'].each do |file|
+      Dir[File.dirname(__FILE__)+'/../fixtures/lvm_backups/*'].each do |file|
         lambda { @parser.parse(File.read(file)) }.should_not raise_error
       end
     end
