@@ -4,12 +4,15 @@ describe LvmBackup, "parsing" do
   before(:all) do
     @parser = LvmBackupParser.new
   end
-  describe "to a integer" do
+  describe "multiline input" do
     before(:all) do
-      @result = @parser.parse("foo = 42\n")        
+      @result = @parser.parse(File.read(File.dirname(__FILE__)+'/../fixtures/ey04-data00'))
+    end
+    it "shouldn't be nil" do
+      @result.should_not be_nil
     end
     it "should return a kind of LvmBackup::AssignemtnOperation" do
-      @result.should be_a_kind_of(LvmBackup::FileContents)        
+      @result.should be_a_kind_of(Treetop::Runtime::SyntaxNode)
     end
 
     describe "evaluated output" do
@@ -20,20 +23,13 @@ describe LvmBackup, "parsing" do
         @evaluated_result.should be_a_kind_of(Hash)          
       end
       it "should be able to lookup the variable name" do
-        @evaluated_result['foo'].should eql(42)          
-      end        
-    end
-
-    describe "commented out" do
-      before(:all) do
-        @result = @parser.parse("foo = 42 #Answer to Life, the Universe, and Everything\n")
-        @evaluated_result = @result.eval({})
-      end
-      it "should return a hash of the evaluated string" do
-        @evaluated_result.should be_a_kind_of(Hash)          
+        @evaluated_result['contents'].should eql('Text Format Volume Group')          
       end
       it "should be able to lookup the variable name" do
-        @evaluated_result['foo'].should eql(42)          
+        @evaluated_result['version'].should eql(1)
+      end
+      it "should be able to access the physical volumes hash" do
+        @evaluated_result['ey04-data00']['id'].should eql("6jKJQg-pFTD-lff8-4xwL-oGk2-z0q2-WVRHTa")
       end
     end
   end

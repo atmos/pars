@@ -1,7 +1,7 @@
 module LvmBackup
   class AssignmentOperation < Treetop::Runtime::SyntaxNode
     def eval(env={})
-      env[varname.text_value] = varvalue.text_value
+      env[varname.text_value] = varvalue.eval(env)
       env
     end
   end
@@ -39,7 +39,6 @@ module LvmBackup
     end
   end
 
-
   class BlockOperation < Treetop::Runtime::SyntaxNode
     def eval(env={})
       env["#{name.text_value}"] = block_contents.eval({})
@@ -53,13 +52,17 @@ module LvmBackup
     end
   end
 
-  
   class StringLiteral < Treetop::Runtime::SyntaxNode
     def eval(env={})
       text_value
     end
   end
   
+  class NumberNode < Treetop::Runtime::SyntaxNode
+    def eval(env={})
+      text_value.to_i
+    end
+  end
   
   class FileContents < Treetop::Runtime::SyntaxNode
     def eval(env={})
@@ -69,4 +72,12 @@ module LvmBackup
       env
     end
   end
+
+  class DummyNode < Treetop::Runtime::SyntaxNode
+    def eval(env={})
+      env
+    end
+  end
+  class CommentNode < DummyNode; end
+  
 end

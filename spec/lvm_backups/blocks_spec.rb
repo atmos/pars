@@ -29,7 +29,7 @@ describe LvmBackup, "parsing" do
     end
     describe "nested" do
       before(:all) do
-        @result = @parser.parse('foo { bar { baz = 42 } }')
+        @result = @parser.parse('foo { bar { baz = 42\nzab = 24 } }')
       end
       it "should return a non nil result" do
         @result.should_not be_nil
@@ -45,7 +45,7 @@ describe LvmBackup, "parsing" do
           @evaluated_result.should be_a_kind_of(Hash)
         end
         it "should have a value for the parsed block name" do
-          @evaluated_result['foo']['bar']['baz'].should eql('42')
+          @evaluated_result['foo']['bar']['baz'].should eql(42)
         end
       end
     end

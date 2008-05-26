@@ -4,7 +4,7 @@ grammar LvmBackup
   end
 
   rule expression
-    block / assignment / comment / string / non_space_char
+    block / assignment / comment / string / blank_line
   end
 
   rule array_list
@@ -12,18 +12,30 @@ grammar LvmBackup
   end
   
   rule assignment
-    varname:variable space "=" space "\"" varvalue:string "\"" space comment* <AssignmentOperation> /
-    varname:variable space "=" space varvalue:number space comment* <AssignmentOperation> /
-    varname:variable space "=" space "[" list:array_list "]" space comment* <ArrayListOperation>
+    space varname:variable space "=" space varvalue:quoted_string space comment* <AssignmentOperation> /
+    space varname:variable space "=" space varvalue:number space comment* <AssignmentOperation> /
+    space varname:variable space "=" space "[" list:array_list "]" space comment* <ArrayListOperation>
   end
   
   rule block
     # string " { " block " }"
-    assignment / name:string space "{" space block_contents:block space "}" <BlockOperation> / string
+    assignment / name:variable space "{" space block_contents:block space "}" <BlockOperation> / string
+  end
+
+  rule quoted_string
+    '"' varname:(!'"' . / '\"')* '"' <QuotedStringLiteral>
+  end
+  
+  rule string
+    ([A-Za-z_-])+ <StringLiteral>
   end
   
   rule comment
-    space "#" [^\n]* "\n"
+    space "#" [^\n]* "\n" <CommentNode>
+  end
+
+  rule blank_line
+    "\n" <DummyNode>
   end
 
   rule non_space_char
@@ -31,22 +43,14 @@ grammar LvmBackup
   end
   
   rule space
-    [ \n]*
+    [ \t\n]*
   end
   
   rule number
-    [0-9]+
+    [0-9]+ <NumberNode>
   end
  
   rule variable
     non_space_char+
-  end
-  
-  rule quoted_string
-    '"' varname:(!'"' . / '\"')* '"' <QuotedStringLiteral>
-  end
-  
-  rule string
-    ([A-Za-z_-])+ <StringLiteral>
   end
 end

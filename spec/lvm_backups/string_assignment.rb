@@ -17,22 +17,22 @@ describe LvmBackup, "parsing" do
           @evaluated_result = @result.eval({})
         end
         it "should return a hash of the evaluated string" do
-          @evaluated_result.should be_a_kind_of(Hash)          
+          @evaluated_result.should be_a_kind_of(Hash)
         end
         it "should be able to lookup the variable name" do
-          @evaluated_result['foo'].should eql('bar')          
+          @evaluated_result['foo'].should eql('bar')
         end        
       end
       describe "commented out" do
         before(:all) do
-          @result = @parser.parse("foo = \"forty-two\" #Answer to Life, the Universe, and Everything\n")
+          @result = @parser.parse("foo = \"forty-two word\" #Answer to Life, the Universe, and Everything\n")
           @evaluated_result = @result.eval({})
         end
         it "should return a hash of the evaluated string" do
           @evaluated_result.should be_a_kind_of(Hash)          
         end
         it "should be able to lookup the variable name" do
-          @evaluated_result['foo'].should eql('forty-two')          
+          @evaluated_result['foo'].should eql('forty-two word')          
         end
       end
     end
