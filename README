@@ -1,4 +1,8 @@
 pars
 ====
 
-A gem that provides...
+A gem that provides parse routines for various linux file formats.  A lot 
+of config and backup file formats on linux can be parsed into simple data
+structures.  The goal here is to write real grammars for things like lvmbackups
+and xenstore-ls output into hashes we can work with easily in Ruby.  We're
+using treetop.
