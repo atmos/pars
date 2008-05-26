@@ -33,4 +33,11 @@ describe LvmBackup, "parsing" do
       end
     end
   end
+  describe "should be able to handle all of the test fixtures" do
+    it "succesful parsing" do
+      Dir[File.dirname(__FILE__)+'/../fixtures/*'].each do |file|
+        lambda { @parser.parse(File.read(file)) }.should_not raise_error
+      end
+    end
+  end
 end
