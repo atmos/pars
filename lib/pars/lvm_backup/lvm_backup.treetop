@@ -4,7 +4,9 @@ grammar LvmBackup
   end
   
   rule array_list
-    "\"" string "\"" / "\"" string "\"," space array_list+ / .
+    # "\"" string "\"" ("," space "\"" string "\"")* / .
+    varvalue:quoted_string ("," space varlist:quoted_string)* / .
+    # "\"" string "\"" / "\"" string "\"," space array_list+ / .
   end
   
   rule assignment
@@ -31,10 +33,10 @@ grammar LvmBackup
   end
 
   rule quoted_string
-    '"' (!'"' . / '\"')* '"' <QuotedStringOperation>
+    '"' varname:(!'"' . / '\"')* '"' <QuotedStringLiteral>
   end
   
   rule string
-    [A-Za-z_]+ <StringLiteral>
+    ([A-Za-z_])+ <StringLiteral>
   end
 end

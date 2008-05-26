@@ -24,7 +24,6 @@ describe LvmBackup, "parsing" do
           @evaluated_result.should be_a_kind_of(Hash)          
         end
         it "should be able to lookup the variable name" do
-          # @evaluated_result['foo'].should eql(%w(RESIZEABLE READ WRITE CLUSTERED))
           @evaluated_result['foo'].should eql(%w(RESIZEABLE))          
         end
       end
@@ -48,8 +47,7 @@ describe LvmBackup, "parsing" do
           @evaluated_result.should be_a_kind_of(Hash)          
         end
         it "should be able to lookup the variable name" do
-          # @evaluated_result['foo'].should eql(%w(RESIZEABLE READ WRITE CLUSTERED))
-          @evaluated_result['foo'].should eql(%w(RESIZEABLE))          
+          @evaluated_result['foo'].should eql(%w(RESIZEABLE READ WRITE CLUSTERID))
         end
       end
       
