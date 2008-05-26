@@ -19,7 +19,7 @@ grammar LvmBackup
   
   rule block
     # string " { " block " }"
-    assignment / name:variable space "{" space block_contents:block space "}" <BlockOperation> / string
+    name:variable space "{" space block_contents:file space "}" <BlockOperation>
   end
 
   rule quoted_string

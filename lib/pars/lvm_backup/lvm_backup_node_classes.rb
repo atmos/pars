@@ -7,14 +7,6 @@ module LvmBackup
   end
 
   class ArrayListOperation < Treetop::Runtime::SyntaxNode
-    def collect_class_nodes(e,klass)
-      found = [ ]
-      e.elements.each do |e|
-        found.push(e.collect_class_nodes(klass)) unless e.terminal?
-      end
-      found.flatten.compact
-    end
-    
     def eval(env={})
       env[varname.text_value] ||= [ ] #varvalue.text_value
       elements = list.elements
@@ -67,7 +59,8 @@ module LvmBackup
   class FileContents < Treetop::Runtime::SyntaxNode
     def eval(env={})
       elements.each do |e|
-        env.merge(e.eval(env))
+        result = e.eval(env)
+        result.kind_of?(String) ? env[result] = nil : env.merge(result)
       end
       env
     end

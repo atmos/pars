@@ -23,7 +23,7 @@ describe LvmBackup, "parsing" do
           @evaluated_result.should be_a_kind_of(Hash)
         end
         it "should have a value for the parsed block name" do
-          @evaluated_result['foo'].should eql('bar')
+          @evaluated_result['foo']['bar'].should be_nil
         end
       end
     end
@@ -46,6 +46,9 @@ describe LvmBackup, "parsing" do
         end
         it "should have a value for the parsed block name" do
           @evaluated_result['foo']['bar']['baz'].should eql(42)
+        end
+        it "should have a value for the parsed block name" do
+          @evaluated_result['foo']['bar']['zab'].should eql(24)
         end
       end
     end
