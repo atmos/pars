@@ -10,10 +10,7 @@ describe LvmBackup, "parsing" do
         @result = @parser.parse("foo = [\"RESIZEABLE\"]\n")
       end
       it "should return a kind of LvmBackup::AssignemtnOperation" do
-        @result.should be_a_kind_of(LvmBackup::ArrayListOperation)
-      end
-      it "should have a varname for the left hand side of the expression" do
-        @result.varname.text_value.should == 'foo'        
+        @result.should be_a_kind_of(LvmBackup::FileContents)
       end
     
       describe "evaluated output" do
@@ -45,10 +42,7 @@ describe LvmBackup, "parsing" do
         @result = @parser.parse("foo = [\"RESIZEABLE\", \"READ\", \"WRITE\", \"CLUSTERID\"]")
       end
       it "should return a kind of LvmBackup::AssignemtnOperation" do
-        @result.should be_a_kind_of(LvmBackup::ArrayListOperation)
-      end
-      it "should have a varname for the left hand side of the expression" do
-        @result.varname.text_value.should == 'foo'        
+        @result.should be_a_kind_of(LvmBackup::FileContents)
       end
     
       describe "evaluated output" do

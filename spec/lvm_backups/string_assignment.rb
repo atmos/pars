@@ -10,13 +10,7 @@ describe LvmBackup, "parsing" do
         @result = @parser.parse("foo = \"bar\"\n")        
       end
       it "should return a kind of LvmBackup::AssignemtnOperation" do
-        @result.should be_a_kind_of(LvmBackup::AssignmentOperation)        
-      end
-      it "should have a varname for the left hand side of the expression" do
-        @result.varname.text_value.should == 'foo'        
-      end
-      it "should have a varvalue for the right hand side of the expression" do
-        @result.varvalue.text_value.should == 'bar'        
+        @result.should be_a_kind_of(LvmBackup::FileContents)        
       end
       describe "evaluated output" do
         before(:all) do

@@ -1,18 +1,20 @@
 grammar LvmBackup
-  rule expression
-    block / assignment / string
+  rule file
+    expression* <FileContents>
   end
-  
+
+  rule expression
+    block / assignment / comment / string / non_space_char
+  end
+
   rule array_list
-    # "\"" string "\"" ("," space "\"" string "\"")* / .
     varvalue:quoted_string ("," space varlist:quoted_string)* / .
-    # "\"" string "\"" / "\"" string "\"," space array_list+ / .
   end
   
   rule assignment
-    varname:string space "=" space "\"" varvalue:string "\"" space comment* <AssignmentOperation> /
-    varname:string space "=" space varvalue:number space comment* <AssignmentOperation> /
-    varname:string space "=" space "[" list:array_list "]" space comment* <ArrayListOperation>
+    varname:variable space "=" space "\"" varvalue:string "\"" space comment* <AssignmentOperation> /
+    varname:variable space "=" space varvalue:number space comment* <AssignmentOperation> /
+    varname:variable space "=" space "[" list:array_list "]" space comment* <ArrayListOperation>
   end
   
   rule block
@@ -21,7 +23,7 @@ grammar LvmBackup
   end
   
   rule comment
-    "#" .*
+    space "#" [^\n]* "\n"
   end
 
   rule non_space_char
@@ -35,12 +37,16 @@ grammar LvmBackup
   rule number
     [0-9]+
   end
-
+ 
+  rule variable
+    non_space_char+
+  end
+  
   rule quoted_string
     '"' varname:(!'"' . / '\"')* '"' <QuotedStringLiteral>
   end
   
   rule string
-    ([A-Za-z_])+ <StringLiteral>
+    ([A-Za-z_-])+ <StringLiteral>
   end
 end

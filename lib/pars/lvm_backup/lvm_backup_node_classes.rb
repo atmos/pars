@@ -59,4 +59,14 @@ module LvmBackup
       text_value
     end
   end
+  
+  
+  class FileContents < Treetop::Runtime::SyntaxNode
+    def eval(env={})
+      elements.each do |e|
+        env.merge(e.eval(env))
+      end
+      env
+    end
+  end
 end

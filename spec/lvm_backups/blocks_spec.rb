@@ -13,10 +13,7 @@ describe LvmBackup, "parsing" do
         @result.should_not be_nil      
       end
       it "should return a kind of LvmBackup::BlockOperation" do
-        @result.should be_a_kind_of(LvmBackup::BlockOperation)      
-      end
-      it "should have block_contents that are a LvmBackup::StringLiteral" do
-        @result.block_contents.should be_a_kind_of(LvmBackup::StringLiteral)      
+        @result.should be_a_kind_of(LvmBackup::FileContents)      
       end
       describe "evaluated output" do
         before(:all) do
@@ -38,10 +35,7 @@ describe LvmBackup, "parsing" do
         @result.should_not be_nil
       end
       it "should return a kind of LvmBackup::BlockOperation" do
-        @result.should be_a_kind_of(LvmBackup::BlockOperation)      
-      end
-      it "should have block_contents that are a LvmBackup::BlockOperation" do
-        @result.block_contents.should be_a_kind_of(LvmBackup::BlockOperation)
+        @result.should be_a_kind_of(LvmBackup::FileContents)      
       end
       describe "evaluated output" do
         before(:all) do
