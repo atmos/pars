@@ -50,6 +50,13 @@ module LvmBackup
     end
   end
   
+  class VariableNode < Treetop::Runtime::SyntaxNode
+    def eval(env={})
+      pp self
+      text_value
+    end
+  end
+  
   class NumberNode < Treetop::Runtime::SyntaxNode
     def eval(env={})
       text_value.to_i

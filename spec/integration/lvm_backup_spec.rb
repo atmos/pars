@@ -4,15 +4,15 @@ describe LvmBackup, "parsing" do
   before(:all) do
     @parser = LvmBackupParser.new
   end
-  describe "multiline input" do
+  describe "ey04-data00 as input" do
     before(:all) do
       @result = @parser.parse(File.read(File.dirname(__FILE__)+'/../fixtures/ey04-data00'))
     end
     it "shouldn't be nil" do
       @result.should_not be_nil
     end
-    it "should return a kind of LvmBackup::AssignemtnOperation" do
-      @result.should be_a_kind_of(Treetop::Runtime::SyntaxNode)
+    it "should return a kind of LvmBackup::FileContents" do
+      @result.should be_a_kind_of(LvmBackup::FileContents)
     end
 
     describe "evaluated output" do
@@ -28,7 +28,7 @@ describe LvmBackup, "parsing" do
       it "should be able to lookup the variable name" do
         @evaluated_result['version'].should eql(1)
       end
-      it "should be able to access the physical volumes hash" do
+      it "should be able to access the id for the lv" do
         @evaluated_result['ey04-data00']['id'].should eql("6jKJQg-pFTD-lff8-4xwL-oGk2-z0q2-WVRHTa")
       end
     end

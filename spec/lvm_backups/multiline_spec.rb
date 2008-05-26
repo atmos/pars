@@ -51,6 +51,28 @@ version = 1
 ey04-data00 { 
   id = 4
   version = 1234
+  physical_volumes {
+
+		pv0 {
+			id = "eIctnq-lQsq-xkLb-w7yj-4m0U-kXeS-xY9qzo"
+			device = "/dev/etherd/e0.0p15"	# Hint only
+
+			status = ["ALLOCATABLE"]
+			tags = ["eyinternal", "build"]
+			dev_size = 468648117	# 223.469 Gigabytes
+			pe_start = 384
+			pe_count = 57207	# 223.465 Gigabytes
+		}
+		pv1 {
+			id = "TEt3bz-id4I-fIfc-PeE0-IBvS-651d-DrDabH"
+			device = "/dev/etherd/e0.1"	# Hint only
+
+			status = ["ALLOCATABLE"]
+			dev_size = 1953546237	# 931.523 Gigabytes
+			pe_start = 384
+			pe_count = 238469	# 931.52 Gigabytes
+		}
+	}
 }
 EOF
       @result = @parser.parse(str)

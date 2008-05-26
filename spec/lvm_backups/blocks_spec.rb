@@ -10,7 +10,7 @@ describe LvmBackup, "parsing" do
         @result = @parser.parse('foo { bar }')
       end
       it "should return a non nil result" do
-        @result.should_not be_nil      
+        @result.should_not be_nil
       end
       it "should return a kind of LvmBackup::BlockOperation" do
         @result.should be_a_kind_of(LvmBackup::FileContents)      
@@ -29,7 +29,15 @@ describe LvmBackup, "parsing" do
     end
     describe "nested" do
       before(:all) do
-        @result = @parser.parse('foo { bar { baz = 42\nzab = 24 } }')
+        str = <<-EOF
+foo {
+  bar {
+    baz = 42
+    zab = 24
+  }
+}
+EOF
+        @result = @parser.parse(str)
       end
       it "should return a non nil result" do
         @result.should_not be_nil

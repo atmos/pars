@@ -9,7 +9,7 @@ describe LvmBackup, "parsing" do
       before(:all) do
         @result = @parser.parse("foo = [\"RESIZEABLE\"]\n")
       end
-      it "should return a kind of LvmBackup::AssignemtnOperation" do
+      it "should return a kind of LvmBackup::FileContents" do
         @result.should be_a_kind_of(LvmBackup::FileContents)
       end
     
@@ -39,9 +39,9 @@ describe LvmBackup, "parsing" do
     end
     describe "with more than one element" do
       before(:all) do
-        @result = @parser.parse("foo = [\"RESIZEABLE\", \"READ\", \"WRITE\", \"CLUSTERID\"]")
+        @result = @parser.parse("foo = [\"RESIZEABLE\", \"READ\", \"WRITE\", \"CLUSTERID\", 0]")
       end
-      it "should return a kind of LvmBackup::AssignemtnOperation" do
+      it "should return a kind of LvmBackup::FileContents" do
         @result.should be_a_kind_of(LvmBackup::FileContents)
       end
     
