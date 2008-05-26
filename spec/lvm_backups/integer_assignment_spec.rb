@@ -6,7 +6,7 @@ describe LvmBackup, "parsing" do
   end
   describe "to a integer" do
     before(:all) do
-      @result = @parser.parse('foo = 42')        
+      @result = @parser.parse("foo = 42\n")        
     end
     it "should return a kind of LvmBackup::AssignemtnOperation" do
       @result.should be_a_kind_of(LvmBackup::AssignmentOperation)        
@@ -27,6 +27,19 @@ describe LvmBackup, "parsing" do
       it "should be able to lookup the variable name" do
         @evaluated_result['foo'].should eql('42')          
       end        
+    end
+
+    describe "commented out" do
+      before(:all) do
+        @result = @parser.parse("foo = 42 #Answer to Life, the Universe, and Everything\n")
+        @evaluated_result = @result.eval({})
+      end
+      it "should return a hash of the evaluated string" do
+        @evaluated_result.should be_a_kind_of(Hash)          
+      end
+      it "should be able to lookup the variable name" do
+        @evaluated_result['foo'].should eql('42')          
+      end
     end
   end
 end

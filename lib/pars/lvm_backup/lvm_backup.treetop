@@ -10,9 +10,9 @@ grammar LvmBackup
   end
   
   rule assignment
-    varname:string space "=" space "\"" varvalue:string "\"" <AssignmentOperation> /
-    varname:string space "=" space varvalue:number <AssignmentOperation> /
-    varname:string space "=" space "[" list:array_list "]" <ArrayListOperation>
+    varname:string space "=" space "\"" varvalue:string "\"" space comment* <AssignmentOperation> /
+    varname:string space "=" space varvalue:number space comment* <AssignmentOperation> /
+    varname:string space "=" space "[" list:array_list "]" space comment* <ArrayListOperation>
   end
   
   rule block
@@ -20,6 +20,10 @@ grammar LvmBackup
     assignment / name:string space "{" space block_contents:block space "}" <BlockOperation> / string
   end
   
+  rule comment
+    "#" .*
+  end
+
   rule non_space_char
     ![ \n] .
   end

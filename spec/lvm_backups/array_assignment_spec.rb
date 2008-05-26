@@ -7,7 +7,7 @@ describe LvmBackup, "parsing" do
   describe "to an array" do
     describe "with one element" do
       before(:all) do
-        @result = @parser.parse('foo = ["RESIZEABLE"]')
+        @result = @parser.parse("foo = [\"RESIZEABLE\"]\n")
       end
       it "should return a kind of LvmBackup::AssignemtnOperation" do
         @result.should be_a_kind_of(LvmBackup::ArrayListOperation)
@@ -27,10 +27,22 @@ describe LvmBackup, "parsing" do
           @evaluated_result['foo'].should eql(%w(RESIZEABLE))          
         end
       end
+      describe "commented out" do
+        before(:all) do
+          @result = @parser.parse("foo = [\"RESIZEABLE\"] #Answer to Life, the Universe, and Everything\n")
+          @evaluated_result = @result.eval({})
+        end
+        it "should return a hash of the evaluated string" do
+          @evaluated_result.should be_a_kind_of(Hash)          
+        end
+        it "should be able to lookup the variable name" do
+          @evaluated_result['foo'].should eql(%w(RESIZEABLE))          
+        end
+      end
     end
     describe "with more than one element" do
       before(:all) do
-        @result = @parser.parse('foo = ["RESIZEABLE", "READ", "WRITE", "CLUSTERID"]')
+        @result = @parser.parse("foo = [\"RESIZEABLE\", \"READ\", \"WRITE\", \"CLUSTERID\"]")
       end
       it "should return a kind of LvmBackup::AssignemtnOperation" do
         @result.should be_a_kind_of(LvmBackup::ArrayListOperation)
