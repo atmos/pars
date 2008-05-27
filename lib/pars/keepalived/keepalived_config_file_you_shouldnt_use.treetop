@@ -1,0 +1,5 @@
+grammar KeepAlivedConfigFileYouShouldntUse
+  rule file
+    expression* <FileContents>
+  end
+end
