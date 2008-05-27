@@ -4,7 +4,7 @@ grammar KeepAlivedConfigFileYouShouldntUse
   end
 
   rule expression
-    assignment
+    assignment / scoped_block
   end
 
   rule assignment
@@ -13,9 +13,12 @@ grammar KeepAlivedConfigFileYouShouldntUse
 #    varname:variable space "=" space "[" space list:array_list space "]" space comment* <ArrayListOperation>
   end
 
+  rule scoped_block
+    space* varname:variable space+ "{" space* block_contents:file space* "}" <ScopedBlockNode>
+  end
 
   rule variable
-    space* [A-Za-z0-9_\-]+ <VariableNode>
+    space* [A-Za-z0-9_\-\.]+ <VariableNode>
   end
   
   rule string
