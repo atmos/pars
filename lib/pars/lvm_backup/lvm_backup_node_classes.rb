@@ -16,6 +16,8 @@ module LvmBackupFileYouShouldntUse
         size = env[varname.text_value].size
         if e.kind_of?(LvmBackupFileYouShouldntUse::QuotedStringLiteral)
           env[varname.text_value].insert(size == 0 ? 0 : 1, e.eval({}))
+        elsif e.kind_of?(LvmBackupFileYouShouldntUse::NumberNode)
+          env[varname.text_value].insert(size == 0 ? 0 : 1, e.eval({}))
         elsif e.kind_of?(Treetop::Runtime::SyntaxNode)
           elements.insert(0, e.elements)
         elsif e.kind_of?(Array)
