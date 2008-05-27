@@ -46,6 +46,7 @@ task :make_spec do
   File.open("#{GEM}.gemspec", "w") do |file|
     file.puts spec.to_ruby
   end
+  FileUtils.cp "README.markdown", "README"
 end
 task :default => ['spec:run']
 ENV['SLOW_TESTS_TOO'] == true
