@@ -19,8 +19,26 @@ module Pars
       end
       
       def services
-        @data['monit'].first['service'].first
+        @services ||= Services.new(@data['monit'].first['service'])
       end
+    end
+    
+    class Services
+      attr_reader :svcs
+      def initialize(svcs)
+        @svcs = svcs
+        pp svcs
+      end
+      def names
+        svcs.map { |service| service["name"] }.flatten
+      end
+      def [](key)
+         @svcs.find { |service| service['name'] == key }
+      end
+    end
+    
+    class Service
+      attr_reader :pid, :status, :name, :memory, :monitor_type, :pendingaction, :cpu, :group, :load
     end
   end
 end
