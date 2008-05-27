@@ -5,10 +5,10 @@ require 'date'
 
 GEM = "pars"
 GEM_VERSION = "0.0.1"
-AUTHOR = "Your Name"
-EMAIL = "Your Email"
-HOMEPAGE = "http://example.com"
-SUMMARY = "A gem that provides..."
+AUTHOR = "Corey Donohoe"
+EMAIL = "cdonohoe@engineyard.com"
+HOMEPAGE = "http://github.com/atmos/pars/tree/master"
+SUMMARY = "A gem that provides parse routines for various linux config file formats"
 
 spec = Gem::Specification.new do |s|
   s.name = GEM
