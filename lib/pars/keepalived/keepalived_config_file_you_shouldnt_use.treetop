@@ -1,5 +1,48 @@
 grammar KeepAlivedConfigFileYouShouldntUse
   rule file
-    expression* <FileContents>
+    expression* <ConfigFile>
+  end
+
+  rule expression
+    assignment
+  end
+
+  rule assignment
+    varname:variable space+ varvalue:variable space* comment* <AssignmentNode>
+#    varname:variable space "=" space varvalue:number space comment* <AssignmentOperation> /
+#    varname:variable space "=" space "[" space list:array_list space "]" space comment* <ArrayListOperation>
+  end
+
+
+  rule variable
+    space* [A-Za-z0-9_\-]+ <VariableNode>
+  end
+  
+  rule string
+    ([A-Za-z_-])+ <StringLiteral>
+  end
+
+  rule array_element
+    quoted_string / number
+  end
+
+  rule comment
+    space "#" [^\n]* "\n" space* <CommentNode>
+  end
+
+  rule blank_line
+    "\n" <DummyNode>
+  end
+
+  rule non_space_char
+    ![ \n] .
+  end
+
+  rule space
+    [ \t\n]
+  end
+
+  rule number
+    [0-9]+ <NumberNode>
   end
 end
