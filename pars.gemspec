@@ -17,4 +17,6 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.1.1}
   s.summary = %q{A gem that provides parse routines for various linux config file formats}
+
+  s.add_dependency(%q<treetop>, [">= 0"])
 end
