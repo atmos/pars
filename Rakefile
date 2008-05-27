@@ -62,3 +62,9 @@ namespace :spec do
     t.spec_opts = ["--format", "specdoc"]
   end
 end
+
+task :deploy do
+  puts "Copying gem to gem server..."
+  puts `eyscp pkg/#{GEM}-#{GEM_VERSION}.gem ey01-s00271:/data/gems/gems`
+  puts `eyssh ey01-s00271 'cd /data/gems; gem generate_index'`  
+end
