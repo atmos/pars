@@ -4,7 +4,7 @@ pars
 A gem that provides parse routines for various linux file formats.  A lot 
 of config and backup file formats on linux can be parsed into simple data
 structures.  The goal here is to write real grammars for things like lvmbackups
-and xenstore-ls output into hashes we can work with easily in Ruby.  We're
+and xenstore-ls output so we can access the data easily in Ruby.  We're
 using [treetop](http://http://github.com/nathansobo/treetop/tree/master/ ) for
 the fun ones.
 
@@ -18,7 +18,7 @@ Supported Files/Output from shell commands
 
 Specs
 -----
-Please run the specs while if hack on this. Rake or autotest should both work fine.
+Please run the specs if hack on this. Rake or autotest should both work fine.
 
     % rake
     (in /Users/atmos/Source/pars)
@@ -32,6 +32,8 @@ Doesn't that bring a big smile to your face?
 
 Basics
 ------
+The input file used below can be found as [ey04-data00](http://github.com/atmos/pars/tree/master/spec/fixtures/lvm_backups/ey04-data00)
+
     % irb
     >> require 'rubygems'
     => false
