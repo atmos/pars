@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe Xm::InfoOutput, "blah" do
+describe Pars::Xm::InfoOutput, "blah" do
   before(:all) do
-    @parser = Xm::InfoOutput.new
+    @parser = Pars::Xm::InfoOutput.new
   end
   
   describe "parsing a file" do

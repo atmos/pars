@@ -1,15 +1,17 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe Xm::ListOutput, "parsing output" do
+describe Pars::Xm::ListOutput, "parsing output" do
   before(:all) do
-    @parser = Xm::ListOutput.new
+    @parser = Pars::Xm::ListOutput.new
   end
   describe "parsing a file" do
     before(:all) do
       @result = @parser.parse(File.dirname(__FILE__)+'/../fixtures/xm/list/ey00n00.xm.list.txt')
     end
-    it "should return an array of hashes entries" do
+    it "should return an array of entries" do
       @result.should be_a_kind_of(Array)
+    end
+    it "should have entries that are hashes" do
       @result.each do |line|
         line.should be_a_kind_of(Hash)
       end
