@@ -1,4 +1,4 @@
-module LvmBackup
+module LvmBackupFileYouShouldntUse
   class AssignmentOperation < Treetop::Runtime::SyntaxNode
     def eval(env={})
       env[varname.text_value] = varvalue.eval(env)
@@ -14,7 +14,7 @@ module LvmBackup
       until elements.empty? do
         e = elements.pop
         size = env[varname.text_value].size
-        if e.kind_of?(LvmBackup::QuotedStringLiteral)
+        if e.kind_of?(LvmBackupFileYouShouldntUse::QuotedStringLiteral)
           env[varname.text_value].insert(size == 0 ? 0 : 1, e.eval({}))
         elsif e.kind_of?(Treetop::Runtime::SyntaxNode)
           elements.insert(0, e.elements)

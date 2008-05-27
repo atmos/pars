@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe LvmBackup, "parsing" do
+describe Pars::LvmBackup::Parser, "parsing" do
   before(:all) do
-    @parser = LvmBackupParser.new
+    @parser = Pars::LvmBackup::Parser.new
   end
   describe "assignment" do
     describe "to a quoted string" do
@@ -10,7 +10,7 @@ describe LvmBackup, "parsing" do
         @result = @parser.parse("foo = \"bar\"\n")        
       end
       it "should return a kind of LvmBackup::AssignemtnOperation" do
-        @result.should be_a_kind_of(LvmBackup::FileContents)        
+        @result.should be_a_kind_of(LvmBackupFileYouShouldntUse::FileContents)        
       end
       describe "evaluated output" do
         before(:all) do

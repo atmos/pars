@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe LvmBackup, "parsing" do
+describe Pars::LvmBackup::Parser, "parsing" do
   before(:all) do
-    @parser = LvmBackupParser.new
+    @parser = Pars::LvmBackup::Parser.new
   end
 
   describe "literals" do

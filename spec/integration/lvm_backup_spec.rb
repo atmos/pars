@@ -1,9 +1,10 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe LvmBackup, "parsing" do
+describe Pars::LvmBackup::Parser, "parsing" do
   before(:all) do
-    @parser = LvmBackupParser.new
+    @parser = Pars::LvmBackup::Parser.new
   end
+  
   describe "ey04-data00 as input" do
     before(:all) do
       @result = @parser.parse(File.read(File.dirname(__FILE__)+'/../fixtures/lvm_backups/ey04-data00'))
@@ -12,7 +13,7 @@ describe LvmBackup, "parsing" do
       @result.should_not be_nil
     end
     it "should return a kind of LvmBackup::FileContents" do
-      @result.should be_a_kind_of(LvmBackup::FileContents)
+      @result.should be_a_kind_of(LvmBackupFileYouShouldntUse::FileContents)
     end
 
     describe "evaluated output" do

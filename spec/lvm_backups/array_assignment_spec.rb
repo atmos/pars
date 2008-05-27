@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe LvmBackup, "parsing" do
+describe Pars::LvmBackup, "parsing" do
   before(:all) do
-    @parser = LvmBackupParser.new
+    @parser = Pars::LvmBackup::Parser.new
   end
   describe "to an array" do
     describe "with one element" do
@@ -10,7 +10,7 @@ describe LvmBackup, "parsing" do
         @result = @parser.parse("foo = [\"RESIZEABLE\"]\n")
       end
       it "should return a kind of LvmBackup::FileContents" do
-        @result.should be_a_kind_of(LvmBackup::FileContents)
+        @result.should be_a_kind_of(LvmBackupFileYouShouldntUse::FileContents)
       end
     
       describe "evaluated output" do
@@ -42,7 +42,7 @@ describe LvmBackup, "parsing" do
         @result = @parser.parse("foo = [\"RESIZEABLE\", \"READ\", \"WRITE\", \"CLUSTERID\", 0]")
       end
       it "should return a kind of LvmBackup::FileContents" do
-        @result.should be_a_kind_of(LvmBackup::FileContents)
+        @result.should be_a_kind_of(LvmBackupFileYouShouldntUse::FileContents)
       end
     
       describe "evaluated output" do
@@ -53,7 +53,7 @@ describe LvmBackup, "parsing" do
           @evaluated_result.should be_a_kind_of(Hash)          
         end
         it "should be able to lookup the variable name" do
-          @evaluated_result['foo'].should eql(%w(RESIZEABLE READ WRITE CLUSTERID))
+          @evaluated_result['foo'].should eql(%w(RESIZEABLE READ WRITE CLUSTERID) + [0])
         end
       end
       

@@ -47,16 +47,16 @@ task :make_spec do
     file.puts spec.to_ruby
   end
 end
-task :default => ['specs:specdoc']
+task :default => ['spec:run']
+ENV['SLOW_TESTS_TOO'] == true
 
-namespace :specs do
-  
+namespace :spec do
   Spec::Rake::SpecTask.new('run') do |t|
     t.spec_files = FileList['spec/**/**/*.rb']
   end
   
   desc "Generate specdocs for examples for inclusion in RDoc"
-  Spec::Rake::SpecTask.new('specdoc') do |t|
+  Spec::Rake::SpecTask.new('doc') do |t|
     t.spec_files = FileList['spec/**/**/*.rb']
     t.spec_opts = ["--format", "specdoc"]
   end

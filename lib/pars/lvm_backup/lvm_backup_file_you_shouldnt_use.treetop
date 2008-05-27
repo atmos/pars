@@ -1,4 +1,4 @@
-grammar LvmBackup
+grammar LvmBackupFileYouShouldntUse
   rule file
     expression* <FileContents>
   end
