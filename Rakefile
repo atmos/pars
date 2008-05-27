@@ -1,6 +1,8 @@
 require 'rubygems'
 require 'rake/gempackagetask'
 require 'rubygems/specification'
+require 'spec'
+require 'spec/rake/spectask'
 require 'date'
 
 GEM = "pars"
@@ -27,7 +29,7 @@ spec = Gem::Specification.new do |s|
   
   s.require_path = 'lib'
   s.autorequire = GEM
-  s.files = %w(LICENSE README Rakefile TODO) + Dir.glob("{lib,specs}/**/*")
+  s.files = %w(LICENSE README Rakefile TODO) + Dir.glob("{lib,spec}/**/**/*")
 end
 
 Rake::GemPackageTask.new(spec) do |pkg|
@@ -44,4 +46,8 @@ task :make_spec do
   File.open("#{GEM}.gemspec", "w") do |file|
     file.puts spec.to_ruby
   end
+end
+
+Spec::Rake::SpecTask.new('specs') do |t|
+  t.spec_files = FileList['spec/**/**/*.rb']
 end
