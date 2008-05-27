@@ -51,6 +51,16 @@ end
 task :default => ['spec:run']
 ENV['SLOW_TESTS_TOO'] == true
 
+task :readme do
+  require 'bluecloth'
+  FileUtils.mkdir_p File.dirname(__FILE__)+'/doc'
+  File.open("doc/README.html", 'w') do |outfp|
+    File.open("README.markdown") do |infp|
+      outfp.puts BlueCloth::new(infp.read).to_html
+    end
+  end
+  %x{open #{File.dirname(__FILE__)+'/doc/README.html'}}
+end
 namespace :spec do
   Spec::Rake::SpecTask.new('run') do |t|
     t.spec_files = FileList['spec/**/**/*.rb']
