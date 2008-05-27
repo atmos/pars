@@ -1,0 +1,493 @@
+IP Virtual Server version 1.2.1 (size=262144)
+Prot LocalAddress:Port Scheduler Flags
+  -> RemoteAddress:Port Forward Weight ActiveConn InActConn
+TCP  4AC99864:2042 lblcr 
+TCP  4AC99864:1F7D lblcr 
+TCP  4AC99864:2043 lblcr 
+TCP  4AC99864:1F7C lblcr 
+TCP  4AC99864:2040 lblcr 
+TCP  4AC99864:1F7F lblcr 
+TCP  4AC99864:2041 lblcr 
+TCP  4AC99864:1F7E lblcr 
+TCP  4AC99864:2046 lblcr 
+TCP  4AC99864:1F79 lblcr 
+TCP  4AC99864:2047 lblcr 
+TCP  4AC99864:1F78 lblcr 
+TCP  4AC99864:2044 lblcr 
+TCP  4AC99864:1F7B lblcr 
+TCP  4AC99864:2045 lblcr 
+TCP  4AC99864:1F7A lblcr 
+TCP  4AC99864:204A lblcr 
+TCP  4AC99864:1F75 lblcr 
+TCP  4AC99864:204B lblcr 
+TCP  4AC99864:1F74 lblcr 
+TCP  4AC99864:2048 lblcr 
+TCP  4AC99864:1F77 lblcr 
+TCP  4AC99864:2049 lblcr 
+TCP  4AC99864:1F76 lblcr 
+TCP  4AC99864:204E lblcr 
+TCP  4AC99864:1F71 lblcr 
+TCP  4AC99864:204F lblcr 
+TCP  4AC99864:1F70 lblcr 
+TCP  4AC99864:204C lblcr 
+TCP  4AC99864:1F73 lblcr 
+TCP  4AC99864:204D lblcr 
+TCP  4AC99864:1F72 lblcr 
+TCP  4AC99864:2052 lblcr 
+TCP  4AC99864:1F6D lblcr 
+TCP  4AC99864:1B69 lc 
+  -> 0A040012:0016      Masq    1      0          0         
+TCP  4AC99864:2053 lblcr 
+TCP  4AC99864:1F6C lblcr 
+TCP  4AC99864:1B68 lc 
+  -> 0A040011:0016      Masq    1      0          0         
+TCP  4AC99864:2050 lblcr 
+TCP  4AC99864:1F6F lblcr 
+TCP  4AC99864:2051 lblcr 
+TCP  4AC99864:1F6E lblcr 
+TCP  4AC99864:2056 lblcr 
+TCP  4AC99864:1F69 lblcr 
+  -> 0A04402A:0016      Masq    1      0          0         
+TCP  4AC99864:2057 lblcr 
+TCP  4AC99864:1F68 lblcr 
+  -> 0A044029:0016      Masq    1      0          0         
+TCP  4AC99864:2054 lblcr 
+TCP  4AC99864:1F6B lblcr 
+TCP  4AC99864:2055 lblcr 
+TCP  4AC99864:1F6A lblcr 
+  -> 0A04402B:0016      Masq    1      0          0         
+TCP  4AC99864:205A lblcr 
+TCP  4AC99864:1F65 lblcr 
+  -> 0A044026:0016      Masq    1      0          0         
+TCP  4AC99864:1B61 lc 
+  -> 0A04000A:0016      Masq    1      0          0         
+TCP  4AC99864:205B lblcr 
+TCP  4AC99864:1F64 lblcr 
+  -> 0A044025:0016      Masq    1      0          0         
+TCP  4AC99864:1B60 lc 
+  -> 0A040009:0016      Masq    1      0          0         
+TCP  4AC99864:2058 lblcr 
+TCP  4AC99864:1F67 lblcr 
+  -> 0A044028:0016      Masq    1      0          0         
+TCP  4AC99864:1B63 lc 
+  -> 0A04000C:0016      Masq    1      0          0         
+TCP  4AC99864:2059 lblcr 
+TCP  4AC99864:1F66 lblcr 
+  -> 0A044027:0016      Masq    1      0          0         
+TCP  4AC99864:1B62 lc 
+  -> 0A04000B:0016      Masq    1      0          0         
+TCP  4AC99864:205E lblcr 
+TCP  4AC99864:1F61 lblcr 
+  -> 0A044022:0016      Masq    1      0          0         
+TCP  4AC99864:1B65 lc 
+  -> 0A04000E:0016      Masq    1      0          0         
+TCP  4AC99864:205F lblcr 
+TCP  4AC99864:1F60 lblcr 
+  -> 0A044021:0016      Masq    1      0          0         
+TCP  4AC99864:1B64 lc 
+  -> 0A04000D:0016      Masq    1      0          0         
+TCP  4AC99864:205C lblcr 
+TCP  4AC99864:1F63 lblcr 
+  -> 0A044024:0016      Masq    1      0          0         
+TCP  4AC99864:1B67 lc 
+  -> 0A040010:0016      Masq    1      0          0         
+TCP  4AC99864:205D lblcr 
+TCP  4AC99864:1F62 lblcr 
+  -> 0A044023:0016      Masq    1      0          0         
+TCP  4AC99864:1B66 lc 
+  -> 0A04000F:0016      Masq    1      0          0         
+TCP  4AC99864:2062 lblcr 
+TCP  4AC99864:1F5D lblcr 
+  -> 0A04401E:0016      Masq    1      0          0         
+TCP  4AC99864:1B59 lc 
+  -> 0A040002:0016      Masq    1      0          0         
+TCP  4AC99864:2063 lblcr 
+TCP  4AC99864:1F5C lblcr 
+  -> 0A04401D:0016      Masq    1      0          0         
+TCP  4AC99864:1B58 lc 
+  -> 0A040001:0016      Masq    1      1          0         
+TCP  4AC99864:2060 lblcr 
+TCP  4AC99864:1F5F lblcr 
+  -> 0A044020:0016      Masq    1      0          0         
+TCP  4AC99864:1B5B lc 
+  -> 0A040004:0016      Masq    1      0          0         
+TCP  4AC99864:2061 lblcr 
+TCP  4AC99864:1F5E lblcr 
+  -> 0A04401F:0016      Masq    1      0          0         
+TCP  4AC99864:1B5A lc 
+  -> 0A040003:0016      Masq    1      0          0         
+TCP  4AC99864:2066 lblcr 
+TCP  4AC99864:1F59 lblcr 
+  -> 0A04401A:0016      Masq    1      0          0         
+TCP  4AC99864:1B5D lc 
+  -> 0A040006:0016      Masq    1      0          0         
+TCP  4AC99864:2067 lblcr 
+TCP  4AC99864:1F58 lblcr 
+  -> 0A044019:0016      Masq    1      0          0         
+TCP  4AC99864:1B5C lc 
+  -> 0A040005:0016      Masq    1      0          0         
+TCP  4AC99864:2064 lblcr 
+TCP  4AC99864:1F5B lblcr 
+  -> 0A04401C:0016      Masq    1      0          0         
+TCP  4AC99864:1B5F lc 
+  -> 0A040008:0016      Masq    1      0          0         
+TCP  4AC99864:2065 lblcr 
+TCP  4AC99864:1F5A lblcr 
+  -> 0A04401B:0016      Masq    1      0          0         
+TCP  4AC99864:1B5E lc 
+  -> 0A040007:0016      Masq    1      0          0         
+TCP  4AC99864:206A lblcr 
+TCP  4AC99864:1F55 lblcr 
+  -> 0A044016:0016      Masq    1      0          0         
+TCP  4AC99864:206B lblcr 
+TCP  4AC99864:1F54 lblcr 
+  -> 0A044015:0016      Masq    1      1          0         
+TCP  4AC99864:2068 lblcr 
+TCP  4AC99864:1F57 lblcr 
+  -> 0A044018:0016      Masq    1      0          0         
+TCP  4AC99864:2069 lblcr 
+TCP  4AC99864:1F56 lblcr 
+  -> 0A044017:0016      Masq    1      0          0         
+TCP  4AC99864:206E lblcr 
+TCP  4AC99864:1F51 lblcr 
+  -> 0A044012:0016      Masq    1      0          0         
+TCP  4AC99864:206F lblcr 
+TCP  4AC99864:1F50 lblcr 
+  -> 0A044011:0016      Masq    1      0          0         
+TCP  4AC99864:206C lblcr 
+TCP  4AC99864:1F53 lblcr 
+  -> 0A044014:0016      Masq    1      0          0         
+TCP  4AC99864:206D lblcr 
+TCP  4AC99864:1F52 lblcr 
+  -> 0A044013:0016      Masq    1      0          0         
+TCP  4AC99864:2072 lblcr 
+TCP  4AC99864:1F4D lblcr 
+  -> 0A04400E:0016      Masq    1      0          0         
+TCP  4AC99864:2073 lblcr 
+TCP  4AC99864:1F4C lblcr 
+  -> 0A04400D:0016      Masq    1      0          0         
+TCP  4AC99864:2070 lblcr 
+TCP  4AC99864:1F4F lblcr 
+  -> 0A044010:0016      Masq    1      0          0         
+TCP  4AC99864:2071 lblcr 
+TCP  4AC99864:1F4E lblcr 
+  -> 0A04400F:0016      Masq    1      0          0         
+TCP  4AC99864:2076 lblcr 
+TCP  4AC99864:1F49 lblcr 
+  -> 0A04400A:0016      Masq    1      0          0         
+TCP  4AC99864:2077 lblcr 
+TCP  4AC99864:1F48 lblcr 
+  -> 0A044009:0016      Masq    1      0          0         
+TCP  4AC99864:2074 lblcr 
+TCP  4AC99864:1F4B lblcr 
+  -> 0A04400C:0016      Masq    1      0          0         
+TCP  4AC99864:2075 lblcr 
+TCP  4AC99864:1F4A lblcr 
+  -> 0A04400B:0016      Masq    1      0          0         
+TCP  4AC99864:207A lblcr 
+TCP  4AC99864:1F45 lblcr 
+  -> 0A044006:0016      Masq    1      0          0         
+TCP  4AC99864:207B lblcr 
+TCP  4AC99864:1F44 lblcr 
+  -> 0A044005:0016      Masq    1      0          0         
+TCP  4AC99864:2078 lblcr 
+TCP  4AC99864:1F47 lblcr 
+  -> 0A044008:0016      Masq    1      0          0         
+TCP  4AC99864:2079 lblcr 
+TCP  4AC99864:1F46 lblcr 
+  -> 0A044007:0016      Masq    1      0          0         
+TCP  4AC99864:207E lblcr 
+TCP  4AC99864:1F41 lblcr 
+  -> 0A044002:0016      Masq    1      0          0         
+TCP  4AC99864:207F lblcr 
+TCP  4AC99864:1F40 lblcr 
+  -> 0A044001:0016      Masq    1      0          0         
+TCP  4AC99864:207C lblcr 
+TCP  4AC99864:1F43 lblcr 
+  -> 0A044004:0016      Masq    1      0          0         
+TCP  4AC99864:207D lblcr 
+TCP  4AC99864:1F42 lblcr 
+  -> 0A044003:0016      Masq    1      0          0         
+TCP  4AC99864:2002 lblcr 
+TCP  4AC99864:2003 lblcr 
+TCP  4AC99864:2000 lblcr 
+TCP  4AC99864:1F3F lc 
+  -> 0A04FF01:0016      Masq    1      0          0         
+TCP  4AC99864:2001 lblcr 
+TCP  4AC99864:2006 lblcr 
+TCP  4AC99864:2007 lblcr 
+TCP  4AC99864:2004 lblcr 
+TCP  4AC99864:2005 lblcr 
+TCP  4AC99864:200A lblcr 
+TCP  4AC99864:200B lblcr 
+TCP  4AC99864:2008 lblcr 
+TCP  4AC99864:2009 lblcr 
+TCP  4AC99864:200E lblcr 
+TCP  4AC99864:200F lblcr 
+TCP  4AC99864:200C lblcr 
+TCP  4AC99864:200D lblcr 
+TCP  4AC99864:2012 lblcr 
+TCP  4AC99864:2013 lblcr 
+TCP  4AC99864:2010 lblcr 
+TCP  4AC99864:2011 lblcr 
+TCP  4AC99864:2016 lblcr 
+TCP  4AD93002:0050 lc 
+  -> 0A04C01F:0050      Masq    1      0          0         
+TCP  4AC99864:2017 lblcr 
+TCP  4AC99864:2014 lblcr 
+TCP  4AC99864:2015 lblcr 
+TCP  4AD93001:0050 lc 
+  -> 0A04C023:0050      Masq    1      0          0         
+  -> 0A04C022:0050      Masq    1      0          0         
+TCP  4AC99864:201A lblcr 
+TCP  4AC99864:201B lblcr 
+TCP  4AC99864:2018 lblcr 
+TCP  4AC99864:2019 lblcr 
+TCP  4AC99864:201E lblcr 
+TCP  4AC99864:201F lblcr 
+TCP  4AC99864:201C lblcr 
+TCP  4AC99864:201D lblcr 
+TCP  4AC99864:2022 lblcr 
+TCP  4AC99864:2023 lblcr 
+TCP  4AC99864:2020 lblcr 
+TCP  4AC99864:2021 lblcr 
+TCP  4AC99864:2026 lblcr 
+TCP  4AC99864:2027 lblcr 
+TCP  4AC99864:2024 lblcr 
+TCP  4AC99864:2025 lblcr 
+TCP  4AC99864:202A lblcr 
+TCP  4AC99864:202B lblcr 
+TCP  4AC99864:2028 lblcr 
+TCP  4AC99864:2029 lblcr 
+TCP  4AC99864:202E lblcr 
+TCP  4AC99864:202F lblcr 
+TCP  4AC99864:202C lblcr 
+TCP  4AC99864:202D lblcr 
+TCP  4AC99864:2032 lblcr 
+TCP  4AC99864:2033 lblcr 
+TCP  4AC99864:2030 lblcr 
+TCP  4AC99864:2031 lblcr 
+TCP  4AC99864:2036 lblcr 
+TCP  4AC99864:2037 lblcr 
+TCP  4AC99864:2034 lblcr 
+TCP  4AC99864:2035 lblcr 
+TCP  4AC99864:203A lblcr 
+TCP  4AC99864:203B lblcr 
+TCP  4AC99864:2038 lblcr 
+TCP  4AC99864:2039 lblcr 
+TCP  4AC99864:203E lblcr 
+TCP  4AC99864:203F lblcr 
+TCP  4AC99864:203C lblcr 
+TCP  4AC99864:203D lblcr 
+TCP  4AC99864:20C2 lblcr 
+TCP  4AC99864:1FFD lblcr 
+TCP  4AC99864:20C3 lblcr 
+TCP  4AC99864:1FFC lblcr 
+TCP  4AC99864:20C0 lblcr 
+TCP  4AC99864:1FFF lblcr 
+TCP  4AC99864:20C1 lblcr 
+TCP  4AC99864:1FFE lblcr 
+TCP  4AC99864:20C6 lblcr 
+TCP  4AC99864:1FF9 lblcr 
+TCP  4AC99864:20C7 lblcr 
+TCP  4AC99864:1FF8 lblcr 
+TCP  4AC99864:20C4 lblcr 
+TCP  4AC99864:1FFB lblcr 
+TCP  4AC99864:20C5 lblcr 
+TCP  4AC99864:1FFA lblcr 
+TCP  4AC99864:20CA lblcr 
+TCP  4AC99864:1FF5 lblcr 
+TCP  4AC99864:20CB lblcr 
+TCP  4AC99864:1FF4 lblcr 
+TCP  4AC99864:20C8 lblcr 
+TCP  4AC99864:1FF7 lblcr 
+TCP  4AC99864:20C9 lblcr 
+TCP  4AC99864:1FF6 lblcr 
+TCP  4AC99864:20CE lblcr 
+TCP  4AC99864:1FF1 lblcr 
+TCP  4AC99864:20CF lblcr 
+TCP  4AC99864:1FF0 lblcr 
+TCP  4AC99864:20CC lblcr 
+TCP  4AC99864:1FF3 lblcr 
+TCP  4AC99864:20CD lblcr 
+TCP  4AC99864:1FF2 lblcr 
+TCP  4AC99864:1FED lblcr 
+TCP  4AC99864:1FEC lblcr 
+TCP  4AC99864:20D0 lblcr 
+TCP  4AC99864:1FEF lblcr 
+TCP  4AC99864:1FEE lblcr 
+TCP  4AC99864:1FE9 lblcr 
+TCP  4AC99864:1FE8 lblcr 
+TCP  4AC99864:1FEB lblcr 
+TCP  4AC99864:1FEA lblcr 
+TCP  4AC99864:1FE5 lblcr 
+TCP  4AC99864:1FE4 lblcr 
+TCP  4AC99864:1FE7 lblcr 
+TCP  4AC99864:1FE6 lblcr 
+TCP  4AC99864:1FE1 lblcr 
+TCP  4AC99864:1FE0 lblcr 
+TCP  4AC99864:1FE3 lblcr 
+TCP  4AC99864:1FE2 lblcr 
+TCP  4AC99864:1FDD lblcr 
+TCP  4AC99864:1FDC lblcr 
+TCP  4AC99864:1FDF lblcr 
+TCP  4AC99864:1FDE lblcr 
+TCP  4AC99864:1FD9 lblcr 
+TCP  4AC99864:1FD8 lblcr 
+TCP  4AC99864:1FDB lblcr 
+TCP  4AC99864:1FDA lblcr 
+TCP  4AC99864:1FD5 lblcr 
+TCP  4AC99864:1FD4 lblcr 
+TCP  4AC99864:1FD7 lblcr 
+TCP  4AC99864:1FD6 lblcr 
+TCP  4AC99864:1FD1 lblcr 
+TCP  4AC99864:1FD0 lblcr 
+TCP  4AC99864:1FD3 lblcr 
+TCP  4AC99864:1FD2 lblcr 
+TCP  4AC99864:1FCD lblcr 
+TCP  4AC99864:1FCC lblcr 
+TCP  4AC99864:1FCF lblcr 
+TCP  4AC99864:1FCE lblcr 
+TCP  4AC99864:1FC9 lblcr 
+TCP  4AC99864:1FC8 lblcr 
+TCP  4AC99864:1FCB lblcr 
+TCP  4AC99864:1FCA lblcr 
+TCP  4AC99864:1FC5 lblcr 
+TCP  4AC99864:1FC4 lblcr 
+TCP  4AC99864:1FC7 lblcr 
+TCP  4AC99864:1FC6 lblcr 
+TCP  4AC99864:1FC1 lblcr 
+TCP  4AC99864:1FC0 lblcr 
+TCP  4AD93001:01BB lc 
+  -> 0A04C023:01BB      Masq    1      0          0         
+  -> 0A04C022:01BB      Masq    1      0          0         
+TCP  4AC99864:1FC3 lblcr 
+TCP  4AC99864:1FC2 lblcr 
+TCP  4AC99864:2082 lblcr 
+TCP  4AC99864:1FBD lblcr 
+TCP  4AC99864:2083 lblcr 
+TCP  4AC99864:1FBC lblcr 
+TCP  4AC99864:2080 lblcr 
+TCP  4AC99864:1FBF lblcr 
+TCP  4AC99864:2081 lblcr 
+TCP  4AC99864:1FBE lblcr 
+TCP  4AC99864:2086 lblcr 
+TCP  4AC99864:1FB9 lblcr 
+TCP  4AC99864:2087 lblcr 
+TCP  4AC99864:1FB8 lblcr 
+TCP  4AC99864:2084 lblcr 
+TCP  4AC99864:1FBB lblcr 
+TCP  4AC99864:2085 lblcr 
+TCP  4AC99864:1FBA lblcr 
+TCP  4AC99864:208A lblcr 
+TCP  4AC99864:1FB5 lblcr 
+TCP  4AC99864:208B lblcr 
+TCP  4AC99864:1FB4 lblcr 
+TCP  4AC99864:2088 lblcr 
+TCP  4AC99864:1FB7 lblcr 
+TCP  4AC99864:2089 lblcr 
+TCP  4AC99864:1FB6 lblcr 
+TCP  4AC99864:208E lblcr 
+TCP  4AC99864:1FB1 lblcr 
+TCP  4AC99864:208F lblcr 
+TCP  4AC99864:1FB0 lblcr 
+TCP  4AC99864:208C lblcr 
+TCP  4AC99864:1FB3 lblcr 
+TCP  4AC99864:208D lblcr 
+TCP  4AC99864:1FB2 lblcr 
+TCP  4AC99864:2092 lblcr 
+TCP  4AC99864:1FAD lblcr 
+TCP  4AC99864:2093 lblcr 
+TCP  4AC99864:1FAC lblcr 
+TCP  4AC99864:2090 lblcr 
+TCP  4AC99864:1FAF lblcr 
+TCP  4AC99864:2091 lblcr 
+TCP  4AC99864:1FAE lblcr 
+TCP  4AC99864:2096 lblcr 
+TCP  4AC99864:1FA9 lblcr 
+TCP  4AC99864:2097 lblcr 
+TCP  4AC99864:1FA8 lblcr 
+TCP  4AC99864:2094 lblcr 
+TCP  4AC99864:1FAB lblcr 
+TCP  4AC99864:2095 lblcr 
+TCP  4AC99864:1FAA lblcr 
+TCP  4AC99864:209A lblcr 
+TCP  4AC99864:1FA5 lblcr 
+TCP  4AC99864:209B lblcr 
+TCP  4AC99864:1FA4 lblcr 
+TCP  4AC99864:2098 lblcr 
+TCP  4AC99864:1FA7 lblcr 
+TCP  4AC99864:2099 lblcr 
+TCP  4AC99864:1FA6 lblcr 
+TCP  4AC99864:209E lblcr 
+TCP  4AC99864:1FA1 lblcr 
+TCP  4AC99864:209F lblcr 
+TCP  4AC99864:1FA0 lblcr 
+TCP  4AC99864:209C lblcr 
+TCP  4AC99864:1FA3 lblcr 
+TCP  4AC99864:209D lblcr 
+TCP  4AC99864:1FA2 lblcr 
+TCP  4AC99864:20A2 lblcr 
+TCP  4AC99864:1F9D lblcr 
+TCP  4AC99864:20A3 lblcr 
+TCP  4AC99864:1F9C lblcr 
+TCP  4AC99864:20A0 lblcr 
+TCP  4AC99864:1F9F lblcr 
+TCP  4AC99864:20A1 lblcr 
+TCP  4AC99864:1F9E lblcr 
+TCP  4AC99864:20A6 lblcr 
+TCP  4AC99864:1F99 lblcr 
+TCP  4AC99864:20A7 lblcr 
+TCP  4AC99864:1F98 lblcr 
+TCP  4AC99864:20A4 lblcr 
+TCP  4AC99864:1F9B lblcr 
+TCP  4AC99864:20A5 lblcr 
+TCP  4AC99864:1F9A lblcr 
+TCP  4AC99864:20AA lblcr 
+TCP  4AC99864:1F95 lblcr 
+TCP  4AC99864:20AB lblcr 
+TCP  4AC99864:1F94 lblcr 
+TCP  4AC99864:20A8 lblcr 
+TCP  4AC99864:1F97 lblcr 
+TCP  4AC99864:20A9 lblcr 
+TCP  4AC99864:1F96 lblcr 
+TCP  4AC99864:20AE lblcr 
+TCP  4AC99864:1F91 lblcr 
+TCP  4AC99864:20AF lblcr 
+TCP  4AC99864:1F90 lblcr 
+TCP  4AC99864:20AC lblcr 
+TCP  4AC99864:1F93 lblcr 
+TCP  4AC99864:20AD lblcr 
+TCP  4AC99864:1F92 lblcr 
+TCP  4AC99864:20B2 lblcr 
+TCP  4AC99864:1F8D lblcr 
+TCP  4AC99864:20B3 lblcr 
+TCP  4AC99864:1F8C lblcr 
+TCP  4AC99864:20B0 lblcr 
+TCP  4AC99864:1F8F lblcr 
+TCP  4AC99864:20B1 lblcr 
+TCP  4AC99864:1F8E lblcr 
+TCP  4AC99864:20B6 lblcr 
+TCP  4AC99864:1F89 lblcr 
+TCP  4AC99864:20B7 lblcr 
+TCP  4AC99864:1F88 lblcr 
+TCP  4AC99864:20B4 lblcr 
+TCP  4AC99864:1F8B lblcr 
+TCP  4AC99864:20B5 lblcr 
+TCP  4AC99864:1F8A lblcr 
+TCP  4AC99864:20BA lblcr 
+TCP  4AC99864:1F85 lblcr 
+TCP  4AC99864:20BB lblcr 
+TCP  4AC99864:1F84 lblcr 
+TCP  4AC99864:20B8 lblcr 
+TCP  4AC99864:1F87 lblcr 
+TCP  4AC99864:20B9 lblcr 
+TCP  4AC99864:1F86 lblcr 
+TCP  4AC99864:20BE lblcr 
+TCP  4AC99864:1F81 lblcr 
+TCP  4AC99864:20BF lblcr 
+TCP  4AC99864:1F80 lblcr 
+TCP  4AC99864:20BC lblcr 
+TCP  4AC99864:1F83 lblcr 
+TCP  4AC99864:20BD lblcr 
+TCP  4AC99864:1F82 lblcr 
