@@ -6,7 +6,7 @@ require 'spec/rake/spectask'
 require 'date'
 
 GEM = "pars"
-GEM_VERSION = "0.0.1"
+GEM_VERSION = "0.0.2"
 AUTHOR = "Corey Donohoe"
 EMAIL = "cdonohoe@engineyard.com"
 HOMEPAGE = "http://github.com/atmos/pars/tree/master"
