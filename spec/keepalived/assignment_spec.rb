@@ -7,7 +7,7 @@ describe KeepAlivedConfigFileYouShouldntUse::AssignmentNode, "variable assignmen
   it "should not be nil" do
     @parser.should_not be_nil
   end
-  describe ".parse" do
+  describe " calling .parse" do
     describe "with one parameter" do
       before(:all) do
         @result = @parser.parse("lvs_sync_daemon_interface internal\n")
@@ -18,7 +18,7 @@ describe KeepAlivedConfigFileYouShouldntUse::AssignmentNode, "variable assignmen
       it "should return a config file you shouldn't use" do
         @result.should be_a_kind_of(KeepAlivedConfigFileYouShouldntUse::ConfigFile)
       end
-      describe ".eval" do
+      describe "calling .eval on the result" do
         before(:all) do
           @evaluated_result = @result.eval({})
         end
@@ -30,7 +30,6 @@ describe KeepAlivedConfigFileYouShouldntUse::AssignmentNode, "variable assignmen
     describe "with two parameters" do
       before(:all) do
         @result = @parser.parse("notify_master /etc/keepalived/be_master\nnotify_backup /etc/keepalived/be_backup\n")
-        pp @parser
       end
       it "should return a parse representation of the assignment" do
         @result.should_not be_nil
@@ -38,7 +37,7 @@ describe KeepAlivedConfigFileYouShouldntUse::AssignmentNode, "variable assignmen
       it "should return a config file you shouldn't use" do
         @result.should be_a_kind_of(KeepAlivedConfigFileYouShouldntUse::ConfigFile)
       end
-      describe ".eval" do
+      describe "calling .eval on the result" do
         before(:all) do
           @evaluated_result = @result.eval({})
         end

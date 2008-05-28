@@ -18,7 +18,7 @@ grammar KeepAlivedConfigFileYouShouldntUse
   end
 
   rule variable
-    space* [A-Za-z0-9_\-\.]+ <VariableNode>
+    space* [A-Za-z0-9_\-\./]+ <VariableNode>
   end
   
   rule string
