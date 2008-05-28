@@ -27,5 +27,28 @@ describe KeepAlivedConfigFileYouShouldntUse::AssignmentNode, "variable assignmen
         end
       end
     end
+    describe "with two parameters" do
+      before(:all) do
+        @result = @parser.parse("notify_master /etc/keepalived/be_master\nnotify_backup /etc/keepalived/be_backup\n")
+        pp @parser
+      end
+      it "should return a parse representation of the assignment" do
+        @result.should_not be_nil
+      end
+      it "should return a config file you shouldn't use" do
+        @result.should be_a_kind_of(KeepAlivedConfigFileYouShouldntUse::ConfigFile)
+      end
+      describe ".eval" do
+        before(:all) do
+          @evaluated_result = @result.eval({})
+        end
+        it "should return the value of the first assignment" do
+          @evaluated_result[:notify_master].should eql("/etc/keepalived/be_master")
+        end
+        it "should return the value of the second assignment" do
+          @evaluated_result[:notify_backup].should eql("/etc/keepalived/be_backup")
+        end
+      end
+    end
   end
 end
