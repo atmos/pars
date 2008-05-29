@@ -8,7 +8,8 @@ describe Pars::KeepAlived::Parser, "parsing" do
   # describe "keepalived.conf as input" do
   #   before(:all) do
   #     @result = @parser.parse(File.read(File.dirname(__FILE__)+'/../fixtures/keepalived/keepalived.conf'))
-  #     # pp @parser
+  #     pp @parser
+  #     # raise ArgumentError
   #   end
   #   it "shouldn't be nil" do
   #     @result.should_not be_nil

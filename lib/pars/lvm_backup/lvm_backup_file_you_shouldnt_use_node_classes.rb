@@ -54,7 +54,6 @@ module LvmBackupFileYouShouldntUse
   
   class VariableNode < Treetop::Runtime::SyntaxNode
     def eval(env={})
-      pp self
       text_value
     end
   end

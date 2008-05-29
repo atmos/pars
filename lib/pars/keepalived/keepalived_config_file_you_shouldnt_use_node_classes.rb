@@ -3,10 +3,11 @@ module KeepAlivedConfigFileYouShouldntUse
     def eval(env={})
       elements.each do |e|
         begin
-          result = e.eval(env) rescue nil
+          result = e.eval(env)
           result.kind_of?(String) ? env[result] = nil : env.merge(result)
         rescue => exception
           pp e
+          pp "ZOMFG #{exception.message}"
         end
       end
       env
@@ -15,6 +16,15 @@ module KeepAlivedConfigFileYouShouldntUse
 
   class CommentNode < ::Treetop::Runtime::SyntaxNode
     def eval(env={}); env end
+  end
+
+  class VrrpSyncGroupNode < ::Treetop::Runtime::SyntaxNode
+    def eval(env={})
+      env[:vrrp_groups] ||= [ ]
+      group = ::KeepAlivedConfigFile::AST::VrrpSyncGroup.new(block_param.eval(env), block_contents.eval({}))
+      env[:vrrp_groups].push(group)
+      env
+    end
   end
 
   class DefinitionNode < ::Treetop::Runtime::SyntaxNode

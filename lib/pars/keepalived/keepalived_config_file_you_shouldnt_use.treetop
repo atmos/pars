@@ -4,13 +4,15 @@ grammar KeepAlivedConfigFileYouShouldntUse
   end
 
   rule expression
-    assignment / comment
+    assignment / comment / blank_line
   end
 
   rule assignment
+    varname:variable space_no_newline+ block_param:variable space_no_newline+ "{" space* block_contents:file space* "}" space* comment* <VrrpSyncGroupNode> /
+    varname:variable space+ "{" space* block_contents:file space* "}" space* comment* <ScopedBlockNode> /
     varname:variable space_no_newline+ varvalue1:variable space_no_newline* varvalue2:variable space* comment* <TwoElementAssignmentNode> /
     varname:variable space_no_newline+ varvalue:variable space* comment* <AssignmentNode> /
-    varname:variable space+ "{" space* block_contents:file space* "}" space* comment* <ScopedBlockNode> /
+
     varname:variable space* comment* <DefinitionNode>
 #    varname:variable space "=" space varvalue:number space comment* <AssignmentOperation> /
 #    varname:variable space "=" space "[" space list:array_list space "]" space comment* <ArrayListOperation>
