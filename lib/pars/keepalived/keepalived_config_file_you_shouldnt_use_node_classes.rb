@@ -27,6 +27,16 @@ module KeepAlivedConfigFileYouShouldntUse
     end
   end
 
+  class VrrpInstanceNode < ::Treetop::Runtime::SyntaxNode
+    def eval(env={})
+      env[:vrrp_instances] ||= [ ]
+      group = ::KeepAlivedConfigFile::AST::VrrpInstance.new(block_param.eval(env), block_contents.eval({}))
+      env[:vrrp_instances].push(group)
+      env
+    end
+  end
+
+
   class DefinitionNode < ::Treetop::Runtime::SyntaxNode
     def eval(env={})
       env[varname.text_value.to_sym] = true

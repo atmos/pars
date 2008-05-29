@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe KeepAlivedConfigFileYouShouldntUse::VrrpSyncGroupNode, "vrrp_sync_group { } in keepalived.conf" do
+describe KeepAlivedConfigFile::AST::VrrpSyncGroup, "vrrp_sync_group { } in keepalived.conf" do
   before(:all) do
     @parser = Pars::KeepAlived::Parser.new
   end
