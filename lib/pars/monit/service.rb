@@ -29,13 +29,14 @@ module Pars
           end
           sum
         end
-        
+
         @monitored      = data['monitor'].first.to_i == 1 ? true : false rescue false
         @monitor_type   = data['monitor'].first.to_i rescue 0
         @pending_action = data['pendingaction'].first.to_i rescue 0
         @collected      = Time.at(data['collected'].first.to_i) rescue nil
         @children       = data['children'].first.to_i rescue 0
       end
+
       def monitored?
         @monitored
       end
