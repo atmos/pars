@@ -4,12 +4,8 @@ grammar KeepAlivedConfigFileYouShouldntUse
   end
 
   rule expression
-    assignment
+    assignment / comment
   end
-
-  # rule scoped_block
-  # 
-  # end
 
   rule assignment
     varname:variable space_no_newline+ varvalue1:variable space_no_newline* varvalue2:variable space* comment* <TwoElementAssignmentNode> /
@@ -34,7 +30,7 @@ grammar KeepAlivedConfigFileYouShouldntUse
   end
 
   rule comment
-    space "#" [^\n]* "\n" space* <CommentNode>
+    space_no_newline* "!" [^\n]* "\n" space* <CommentNode>
   end
 
   rule blank_line

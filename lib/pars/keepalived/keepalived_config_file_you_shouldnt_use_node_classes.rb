@@ -13,6 +13,10 @@ module KeepAlivedConfigFileYouShouldntUse
     end
   end
 
+  class CommentNode < ::Treetop::Runtime::SyntaxNode
+    def eval(env={}); env end
+  end
+
   class DefinitionNode < ::Treetop::Runtime::SyntaxNode
     def eval(env={})
       env[varname.text_value.to_sym] = true
