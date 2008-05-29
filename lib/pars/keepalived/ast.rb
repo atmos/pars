@@ -11,15 +11,6 @@ module KeepAlivedConfigFile
       end
     end
     
-    # :advert_int=>"3",
-    #  :priority=>"100",
-    #  :state=>"MASTER",
-    #  :authentication=>{:auth_type=>"PASS", :auth_pass=>"1111"},
-    #  :interface=>"external",
-    #  :lvs_sync_daemon_interface=>"internal",
-    #  :virtual_ipaddress=>{:"192.168.0.254/32"=>["dev", "aoe0"]},
-    #  :virtual_router_id=>"49"
-    
     class VrrpInstanceAuthentication
       attr_accessor :auth_type, :auth_pass
       def initialize(auth_type, auth_pass)
@@ -29,18 +20,18 @@ module KeepAlivedConfigFile
     end
     
     class VrrpInstanceVirtualIpAddress
-      attr_accessor :ip_address, :device, :tag
-      def initialize(address, device, tag)
+      attr_accessor :ip_address, :device, :interface
+      def initialize(address, device, interface)
         @ip_address = address.to_s
         @device     = device
-        @tag        = tag
+        @interface  = interface
       end
     end
     
     class VrrpInstance
       attr_accessor :name, :advert_int, :priority, :state, :interface
       attr_accessor :lvs_sync_daemon_interface, :virtual_router_id
-      attr_accessor :authentication, :virtual_ipaddress
+      attr_accessor :authentication, :virtual_ipaddresses
       def initialize(name, contents)
         @name                        = name
         @advert_int                  = contents[:advert_int]
@@ -50,11 +41,52 @@ module KeepAlivedConfigFile
         @lvs_sync_daemon_interface   = contents[:lvs_sync_daemon_interface]
         @virtual_router_id           = contents[:virtual_router_id]
         @authentication              = VrrpInstanceAuthentication.new(contents[:authentication][:auth_type], contents[:authentication][:auth_pass])
-        contents[:virtual_ipaddress].each do |key,value|
-          @virtual_ipaddress         = VrrpInstanceVirtualIpAddress.new(key, value[0], value[1])
+        @virtual_ipaddresses         =  contents[:virtual_ipaddress].collect do |key,value|
+          VrrpInstanceVirtualIpAddress.new(key, value[0], value[1])
         end
+        @virtual_ipaddresses.sort!{ |a,b| a.ip_address <=> b.ip_address }
+      end
+    end
+    # real_server 10.4.192.34 80 {
+    #   weight 1
+    #   TCP_CHECK {
+    #     connect_port 80
+    #     connect_timeout 2
+    #     nb_get_retry 20
+    #     delay_before_retry 2
+    #   }
+    # }
+    class ServerCheck
+      attr_accessor :connect_port, :connect_timeout, :nb_get_retry, :delay_before_retry
+      def initialize(connect_port, connect_timeout, nb_get_retry, delay_before_retry, contents = nil)
+        @connect_port, @connect_timeout = connect_port, connect_timeout
+        @nb_get_retry, @delay_before_retry = nb_get_retry, delay_before_retry
       end
     end
     
+    class TcpServerCheck < ServerCheck; end
+    class HttpServerCheck < ServerCheck
+      def initialize(connect_port, connect_timeout, nb_get_retry, delay_before_retry, contents)
+        super(connect_port, connect_timeout, nb_get_retry, delay_before_retry, contents)
+        pp contents
+      end
+    end
+      
+    class RealServer
+      attr_accessor :ip, :port, :weight, :check
+      def initialize(ip, port, contents)
+        @ip     = ip
+        @port   = port
+        @weight = contents[:weight]
+        unless contents[:TCP_CHECK].nil?
+          params = contents[:TCP_CHECK]
+          @check = TcpServerCheck.new(params[:connect_port], params[:connect_timeout], params[:nb_get_retry], params[:delay_before_retry])
+        end
+        unless contents[:HTTP_GET].nil?
+          params = contents[:HTTP_GET]
+          @check = HttpServerCheck.new(params[:connect_port], params[:connect_timeout], params[:nb_get_retry], params[:delay_before_retry], params)
+        end
+      end
+    end
   end
 end

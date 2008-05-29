@@ -29,13 +29,22 @@ module KeepAlivedConfigFileYouShouldntUse
 
   class VrrpInstanceNode < ::Treetop::Runtime::SyntaxNode
     def eval(env={})
+      node = ::KeepAlivedConfigFile::AST::VrrpInstance.new(block_param.eval(env), block_contents.eval({}))
       env[:vrrp_instances] ||= [ ]
-      group = ::KeepAlivedConfigFile::AST::VrrpInstance.new(block_param.eval(env), block_contents.eval({}))
-      env[:vrrp_instances].push(group)
+      env[:vrrp_instances].push(node)
       env
     end
   end
 
+  class RealServerNode < ::Treetop::Runtime::SyntaxNode
+    def eval(env={})
+      rs = ::KeepAlivedConfigFile::AST::RealServer.new(ip.eval(env), port.eval(env), block_contents.eval({}))
+      env[:real_servers] ||= [ ]
+      env[:real_servers].push(rs)
+      env
+    end
+
+  end
 
   class DefinitionNode < ::Treetop::Runtime::SyntaxNode
     def eval(env={})

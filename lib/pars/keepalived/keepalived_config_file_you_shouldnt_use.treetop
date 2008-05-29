@@ -4,7 +4,7 @@ grammar KeepAlivedConfigFileYouShouldntUse
   end
 
   rule expression
-    vrrps / assignment / comment / blank_line
+    vrrps / real_servers / assignment / comment / blank_line
   end
 
   rule vrrps
@@ -12,7 +12,10 @@ grammar KeepAlivedConfigFileYouShouldntUse
     space_no_newline* "vrrp_instance" space_no_newline+ block_param:variable space_no_newline+ "{" space* block_contents:file space* "}" space* comment* <VrrpInstanceNode>
   end
 
-
+  rule real_servers
+    space_no_newline* "real_server" space_no_newline+ ip:variable space_no_newline+ port:variable space* "{" space* block_contents:file space* "}" space* comment* <RealServerNode>
+  end
+  
   rule assignment
     varname:variable space+ "{" space* block_contents:file space* "}" space* comment* <ScopedBlockNode> /
     varname:variable space_no_newline+ varvalue1:variable space_no_newline* varvalue2:variable space* comment* <TwoElementAssignmentNode> /
