@@ -11,6 +11,7 @@ describe KeepAlivedConfigFileYouShouldntUse::ScopedBlockNode, "global_defs { } i
     describe "with one parameter" do
       before(:all) do
         @result = @parser.parse("global_defs {\nlvs_sync_daemon_interface internal\n}")
+        # pp @parser
       end
       it "should return a parse representation of the assignment" do
         @result.should_not be_nil
