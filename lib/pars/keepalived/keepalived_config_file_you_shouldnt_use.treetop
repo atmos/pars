@@ -7,15 +7,17 @@ grammar KeepAlivedConfigFileYouShouldntUse
     assignment / scoped_block
   end
 
+  rule scoped_block
+    space* varname:variable space+ "{" space* block_contents:file space* "}" <ScopedBlockNode>
+  end
+
   rule assignment
-    varname:variable space+ varvalue:variable space* comment* <AssignmentNode>
+    varname:variable space+ varvalue:variable space* comment* <AssignmentNode> /
+    varname:variable space* comment* <DefinitionNode>
 #    varname:variable space "=" space varvalue:number space comment* <AssignmentOperation> /
 #    varname:variable space "=" space "[" space list:array_list space "]" space comment* <ArrayListOperation>
   end
 
-  rule scoped_block
-    space* varname:variable space+ "{" space* block_contents:file space* "}" <ScopedBlockNode>
-  end
 
   rule variable
     space* [A-Za-z0-9_\-\./]+ <VariableNode>

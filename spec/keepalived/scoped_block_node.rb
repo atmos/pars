@@ -7,7 +7,7 @@ describe KeepAlivedConfigFileYouShouldntUse::ScopedBlockNode, "global_defs { } i
   it "should not be nil" do
     @parser.should_not be_nil
   end
-  describe ".parse" do
+  describe " calling .parse" do
     describe "with one parameter" do
       before(:all) do
         @result = @parser.parse("global_defs {\nlvs_sync_daemon_interface internal\n}")
@@ -18,7 +18,7 @@ describe KeepAlivedConfigFileYouShouldntUse::ScopedBlockNode, "global_defs { } i
       it "should return a config file you shouldn't use" do
         @result.should be_a_kind_of(KeepAlivedConfigFileYouShouldntUse::ConfigFile)
       end
-      describe ".eval" do
+      describe " calling .eval" do
         before(:all) do
           @evaluated_result = @result.eval({})
         end

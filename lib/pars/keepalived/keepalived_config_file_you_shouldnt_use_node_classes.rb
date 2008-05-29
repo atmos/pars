@@ -12,7 +12,14 @@ module KeepAlivedConfigFileYouShouldntUse
       env
     end
   end
-  
+
+  class DefinitionNode < ::Treetop::Runtime::SyntaxNode
+    def eval(env={})
+      env[varname.text_value.to_sym] = true
+      env
+    end
+  end
+
   class AssignmentNode < ::Treetop::Runtime::SyntaxNode
     def eval(env={})
       env[varname.text_value.to_sym] = varvalue.eval(env)
