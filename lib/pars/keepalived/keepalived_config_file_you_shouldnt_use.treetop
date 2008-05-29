@@ -12,7 +12,8 @@ grammar KeepAlivedConfigFileYouShouldntUse
   # end
 
   rule assignment
-    varname:variable space+ varvalue:variable space* comment* <AssignmentNode> /
+    varname:variable space_no_newline+ varvalue1:variable space_no_newline* varvalue2:variable space* comment* <TwoElementAssignmentNode> /
+    varname:variable space_no_newline+ varvalue:variable space* comment* <AssignmentNode> /
     varname:variable space+ "{" space* block_contents:file space* "}" space* comment* <ScopedBlockNode> /
     varname:variable space* comment* <DefinitionNode>
 #    varname:variable space "=" space varvalue:number space comment* <AssignmentOperation> /
@@ -21,7 +22,7 @@ grammar KeepAlivedConfigFileYouShouldntUse
 
 
   rule variable
-    space* [A-Za-z0-9_\-\./]+ <VariableNode>
+    space_no_newline* [A-Za-z0-9_\-\./]+ <VariableNode>
   end
   
   rule string
@@ -44,8 +45,12 @@ grammar KeepAlivedConfigFileYouShouldntUse
     ![ \n] .
   end
 
+  rule space_no_newline
+    [ \t]
+  end
+
   rule space
-    [ \t\n]
+    space_no_newline / "\n"
   end
 
   rule number

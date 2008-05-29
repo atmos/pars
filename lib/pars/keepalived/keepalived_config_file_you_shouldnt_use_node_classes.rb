@@ -19,7 +19,13 @@ module KeepAlivedConfigFileYouShouldntUse
       env
     end
   end
-
+  class TwoElementAssignmentNode < ::Treetop::Runtime::SyntaxNode
+    def eval(env={})
+      env[varname.text_value.to_sym] = [varvalue1.eval(env), varvalue2.eval(env)]
+      env
+    end
+  end
+  
   class AssignmentNode < ::Treetop::Runtime::SyntaxNode
     def eval(env={})
       env[varname.text_value.to_sym] = varvalue.eval(env)
