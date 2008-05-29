@@ -6,7 +6,7 @@ describe Pars::Xm::ListOutput, "parsing output" do
   end
   describe "parsing a file" do
     before(:all) do
-      @result = @parser.parse(File.dirname(__FILE__)+'/../fixtures/xm/list/ey00n00.xm.list.txt')
+      @result = @parser.parse(File.read(File.dirname(__FILE__)+'/../fixtures/xm/list/ey00n00.xm.list.txt'))
     end
     it "should return an array of entries" do
       @result.should be_a_kind_of(Array)
