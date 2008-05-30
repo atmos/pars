@@ -4,9 +4,15 @@ module KeepAlivedConfigFileYouShouldntUse
       elements.each do |e|
         begin
           result = e.eval(env)
-          result.kind_of?(String) ? env[result] = nil : env.merge(result)
+          if result.kind_of?(String)
+            pp result if env.nil?
+            env[result] = nil
+          else
+            env.merge(result)
+          end
         rescue => exception
-          pp e
+          # pp e
+          puts exception.backtrace
           pp "ZOMFG #{exception.message}"
         end
       end
@@ -43,7 +49,15 @@ module KeepAlivedConfigFileYouShouldntUse
       env[:real_servers].push(rs)
       env
     end
+  end
 
+  class VirtualServerNode < ::Treetop::Runtime::SyntaxNode
+    def eval(env={})
+      vs = ::KeepAlivedConfigFile::AST::VirtualServer.new(ip.eval(env), port.eval(env), block_contents.eval({}))
+      env[:virtual_servers] ||= [ ]
+      env[:virtual_servers].push(vs)
+      env
+    end
   end
 
   class DefinitionNode < ::Treetop::Runtime::SyntaxNode
