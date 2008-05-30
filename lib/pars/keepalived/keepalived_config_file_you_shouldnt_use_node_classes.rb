@@ -43,7 +43,15 @@ module KeepAlivedConfigFileYouShouldntUse
       env[:real_servers].push(rs)
       env
     end
+  end
 
+  class VirtualServerNode < ::Treetop::Runtime::SyntaxNode
+    def eval(env={})
+      vs = ::KeepAlivedConfigFile::AST::VirtualServer.new(ip.eval(env), port.eval(env), block_contents.eval({}))
+      env[:virtual_servers] ||= [ ]
+      env[:virtual_servers].push(vs)
+      env
+    end
   end
 
   class DefinitionNode < ::Treetop::Runtime::SyntaxNode

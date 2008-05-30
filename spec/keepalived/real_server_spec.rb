@@ -8,7 +8,7 @@ describe KeepAlivedConfigFile::AST::RealServer, "real_server { } in keepalived.c
     @parser.should_not be_nil
   end
   describe " calling .parse" do
-    describe "with one parameter" do
+    describe "with an ip and port as a parameter" do
       before(:all) do
         str = <<-EOF
         real_server 10.4.192.34 80 {

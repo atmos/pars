@@ -88,5 +88,13 @@ module KeepAlivedConfigFile
         end
       end
     end
+
+    class VirtualServer
+      attr_accessor :ip, :port
+      def initialize(ip, port, contents)
+        @ip     = ip
+        @port   = port
+      end
+    end
   end
 end
