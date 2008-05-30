@@ -7,7 +7,7 @@ describe Pars::Xm::InfoOutput, "blah" do
   
   describe "parsing a file" do
     before(:all) do
-      @result = @parser.parse(File.dirname(__FILE__)+'/../fixtures/xm/info/ey00n00.xm.info.txt')
+      @result = @parser.parse(File.read(File.dirname(__FILE__)+'/../fixtures/xm/info/ey00n00.xm.info.txt'))
     end
     it "should return a YAML hash" do
       @result.should be_a_kind_of(Hash)
