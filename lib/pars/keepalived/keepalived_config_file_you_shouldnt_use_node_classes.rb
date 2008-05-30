@@ -4,9 +4,15 @@ module KeepAlivedConfigFileYouShouldntUse
       elements.each do |e|
         begin
           result = e.eval(env)
-          result.kind_of?(String) ? env[result] = nil : env.merge(result)
+          if result.kind_of?(String)
+            pp result if env.nil?
+            env[result] = nil
+          else
+            env.merge(result)
+          end
         rescue => exception
-          pp e
+          # pp e
+          puts exception.backtrace
           pp "ZOMFG #{exception.message}"
         end
       end

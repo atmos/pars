@@ -3,9 +3,8 @@ module KeepAlivedConfigFile
     class VrrpSyncGroup
       attr_accessor :group_name, :group, :contents, :notify_backup, :notify_master
       def initialize(group_name, contents)
-        @group_name = group_name
-        @group = contents[:group].keys
-        @contents = contents
+        @group_name    = group_name
+        @group         = contents[:group].keys
         @notify_backup = contents.delete(:notify_backup)
         @notify_master = contents.delete(:notify_master)
       end
@@ -41,21 +40,13 @@ module KeepAlivedConfigFile
         @lvs_sync_daemon_interface   = contents[:lvs_sync_daemon_interface]
         @virtual_router_id           = contents[:virtual_router_id]
         @authentication              = VrrpInstanceAuthentication.new(contents[:authentication][:auth_type], contents[:authentication][:auth_pass])
-        @virtual_ipaddresses         =  contents[:virtual_ipaddress].collect do |key,value|
+        @virtual_ipaddresses         = contents[:virtual_ipaddress].collect do |key,value|
           VrrpInstanceVirtualIpAddress.new(key, value[0], value[1])
         end
         @virtual_ipaddresses.sort!{ |a,b| a.ip_address <=> b.ip_address }
       end
     end
-    # real_server 10.4.192.34 80 {
-    #   weight 1
-    #   TCP_CHECK {
-    #     connect_port 80
-    #     connect_timeout 2
-    #     nb_get_retry 20
-    #     delay_before_retry 2
-    #   }
-    # }
+
     class ServerCheck
       attr_accessor :connect_port, :connect_timeout, :nb_get_retry, :delay_before_retry
       def initialize(connect_port, connect_timeout, nb_get_retry, delay_before_retry, contents = nil)
@@ -65,6 +56,7 @@ module KeepAlivedConfigFile
     end
     
     class TcpServerCheck < ServerCheck; end
+
     class HttpServerCheck < ServerCheck
       attr_accessor :path, :status_code
       def initialize(connect_port, connect_timeout, nb_get_retry, delay_before_retry, contents)
@@ -118,8 +110,8 @@ module KeepAlivedConfigFile
         @nat_mask            = contents[:nat_mask]
         @persistence_timeout = contents[:persistence_timeout]
         @protocol            = contents[:protocol]
-        @sorry_server        = IpMapping.new(contents[:sorry_server][0], contents[:sorry_server][1])
-        @virtualhost         = contents[:virtualhost]
+        @sorry_server        = IpMapping.new(contents[:sorry_server][0], contents[:sorry_server][1]) rescue nil
+        @virtualhost         = contents[:virtualhost] rescue nil
       end
     end
   end

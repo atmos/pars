@@ -20,7 +20,8 @@ describe Pars::KeepAlived::Parser, "parsing" do
 
     describe "evaluated output" do
       before(:all) do
-        @evaluated_result = @result.eval({})
+        @evaluated_result = @result.eval
+        # pp @evaluated_result
       end
       it "should return a hash of the evaluated string" do
         @evaluated_result.should be_a_kind_of(Hash)          
