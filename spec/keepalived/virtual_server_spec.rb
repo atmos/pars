@@ -56,7 +56,7 @@ EOF
       end
       describe " calling .eval" do
         before(:all) do
-          @evaluated_result = @result.parse({})
+          @evaluated_result = @result.eval({})[:virtual_servers].first
         end
         
         it "should return a delay_loop" do
@@ -80,10 +80,10 @@ EOF
         
         describe " sorry_server " do
           it "should return an ip" do
-            @evaluated_result.sorry_server[0].should eql('127.0.0.1')
+            @evaluated_result.sorry_server.ip.should eql('127.0.0.1')
           end
           it "should return an ip" do
-            @evaluated_result.sorry_server[1].should eql('80')
+            @evaluated_result.sorry_server.port.should eql('80')
           end
         end
       end

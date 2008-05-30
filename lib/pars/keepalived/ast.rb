@@ -66,12 +66,21 @@ module KeepAlivedConfigFile
     
     class TcpServerCheck < ServerCheck; end
     class HttpServerCheck < ServerCheck
+      attr_accessor :path, :status_code
       def initialize(connect_port, connect_timeout, nb_get_retry, delay_before_retry, contents)
         super(connect_port, connect_timeout, nb_get_retry, delay_before_retry, contents)
-        pp contents
+        @path        = contents[:url][:path]
+        @status_code = contents[:url][:status_code]
       end
     end
-      
+
+    class IpMapping
+      attr_accessor :ip, :port
+      def initialize(ip, port)
+        @ip, @port = ip, port
+      end
+    end
+
     class RealServer
       attr_accessor :ip, :port, :weight, :check
       def initialize(ip, port, contents)
@@ -80,20 +89,37 @@ module KeepAlivedConfigFile
         @weight = contents[:weight]
         unless contents[:TCP_CHECK].nil?
           params = contents[:TCP_CHECK]
-          @check = TcpServerCheck.new(params[:connect_port], params[:connect_timeout], params[:nb_get_retry], params[:delay_before_retry])
+          @check = TcpServerCheck.new(params[:connect_port], 
+                                      params[:connect_timeout], 
+                                      params[:nb_get_retry], 
+                                      params[:delay_before_retry])
         end
         unless contents[:HTTP_GET].nil?
           params = contents[:HTTP_GET]
-          @check = HttpServerCheck.new(params[:connect_port], params[:connect_timeout], params[:nb_get_retry], params[:delay_before_retry], params)
+          @check = HttpServerCheck.new(params[:connect_port],
+                                       params[:connect_timeout],
+                                       params[:nb_get_retry],
+                                       params[:delay_before_retry], params)
         end
       end
     end
 
     class VirtualServer
       attr_accessor :ip, :port
+      attr_accessor :delay_loop, :lb_algo, :lb_kind
+      attr_accessor :nat_mask, :persistence_timeout
+      attr_accessor :protocol, :sorry_server, :virtualhost
       def initialize(ip, port, contents)
-        @ip     = ip
-        @port   = port
+        @ip                  = ip
+        @port                = port
+        @delay_loop          = contents[:delay_loop]
+        @lb_algo             = contents[:lb_algo]
+        @lb_kind             = contents[:lb_kind]
+        @nat_mask            = contents[:nat_mask]
+        @persistence_timeout = contents[:persistence_timeout]
+        @protocol            = contents[:protocol]
+        @sorry_server        = IpMapping.new(contents[:sorry_server][0], contents[:sorry_server][1])
+        @virtualhost         = contents[:virtualhost]
       end
     end
   end
