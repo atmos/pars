@@ -1,10 +1,10 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe Pars::Monit::Parser, "monit's XML data exported" do
+describe Pars::Monit::Parser, "monit's XML data fetched from http" do
   before(:all) do
     @parser = Pars::Monit::Parser.new
   end
-  describe "parsing from file" do
+  describe " calling .parse" do
     before(:all) do
       @result = @parser.parse(File.dirname(__FILE__)+'/../fixtures/monit/monit_output.xml')
     end
@@ -12,7 +12,7 @@ describe Pars::Monit::Parser, "monit's XML data exported" do
       @result.should be_a_kind_of(Pars::Monit::ParseResult)
     end
     
-    describe Pars::Monit::Services, ".services" do
+    describe ".services" do
       before(:all) do
         @services = @result.services
       end
@@ -24,7 +24,7 @@ describe Pars::Monit::Parser, "monit's XML data exported" do
         @services.names.should == services
       end
 
-      describe Pars::Monit::Service, "a service running under monit" do
+      describe " a service" do
         before(:all) do
           @service = @services['mongrel_xyzserver_5301']
         end
@@ -40,7 +40,7 @@ describe Pars::Monit::Parser, "monit's XML data exported" do
         it "should return memory used by the service" do
           @service.memory.should == {:kilobyte => "0", :percenttotal => '0.0', :percent => '0.0', :kilobytetotal => '0' }
         end
-        it "should indicated whether it's being monitored or not" do
+        it "should indicate whether it's being monitored or not" do
           @service.should be_monitored
         end
         it "should know its service type" do
@@ -60,7 +60,7 @@ describe Pars::Monit::Parser, "monit's XML data exported" do
         end
       end
 
-      describe Pars::Monit::Service, "a monit service reporting load average" do
+      describe "returning a monit service reporting load average" do
         before(:all) do
           @service = @services['ey02-s00146']
         end
@@ -69,11 +69,11 @@ describe Pars::Monit::Parser, "monit's XML data exported" do
         end
       end
       
-      describe Pars::Monit::Service, "a monit service with a parent pid" do
+      describe "returning a monit service with a parent pid" do
         before(:all) do
           @service = @services['backgroundrb_xyzserver_11006']
         end
-        it "should return the load average for the system" do
+        it "should return the parent pid for the monitored process" do
           @service.ppid.should == 1
         end
         it "should return the number of children" do
