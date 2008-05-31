@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe Pars::NginxConfig::AST::User, "user atmos wheel;" do
+describe Pars::NginxConfig::AST::User, "pid /var/run/nginx.pid;" do
   before(:all) do
     @parser = Pars::NginxConfig::Parser.new
   end
