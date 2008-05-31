@@ -7,6 +7,12 @@ module Pars
           @user, @group = user, group
         end
       end
+      class PidFile
+        attr_accessor :file
+        def initialize(file)
+          @file = file
+        end
+      end
     end
   end
 end

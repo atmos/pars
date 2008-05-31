@@ -1,6 +1,14 @@
 grammar NginxConfigFileYouShouldntUse
+  rule globals
+    user / pid_file
+  end
+  
   rule user
     space_no_newline* "user" space_no_newline* user:variable space_no_newline* group:variable comment* space_no_newline* ";\n" <UserNode>
+  end
+  
+  rule pid_file
+    space_no_newline* "pid" space_no_newline* file:variable space_no_newline* ";" space* <PidFileNode>
   end
   
   rule variable
