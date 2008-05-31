@@ -19,6 +19,29 @@ module Pars
           @count = count
         end
       end
+
+      class LogFormat
+        attr_accessor :log_type, :format
+        def initialize(log_type, format)
+          @log_type, @format = log_type, format
+        end
+      end
+
+      
+      class LogType
+        attr_accessor :path, :level, :log_type
+        def initialize(log_type, path, level)
+          @log_type, @path, @level = log_type, path, level
+        end
+      end
+      
+      class IncludeFile
+        attr_accessor :glob
+        def initialize(glob)
+          @glob = glob
+        end
+      end
+      
       class Events
         attr_accessor :worker_connections, :use
         def initialize(contents)
