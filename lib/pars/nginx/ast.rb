@@ -13,6 +13,12 @@ module Pars
           @file = file
         end
       end
+      class WorkerProcesses
+        attr_accessor :count
+        def initialize(count)
+          @count = count
+        end
+      end
     end
   end
 end

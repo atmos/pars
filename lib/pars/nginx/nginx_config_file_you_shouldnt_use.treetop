@@ -1,6 +1,6 @@
 grammar NginxConfigFileYouShouldntUse
   rule globals
-    user / pid_file
+    user / pid_file / worker_processes
   end
   
   rule user
@@ -11,6 +11,10 @@ grammar NginxConfigFileYouShouldntUse
     space_no_newline* "pid" space_no_newline* file:variable space_no_newline* ";" space* <PidFileNode>
   end
   
+  rule worker_processes
+    space_no_newline* "worker_processes" space_no_newline* count:variable space_no_newline* ";" space* <WorkerProcessesNode>
+  end
+
   rule variable
     space_no_newline* [A-Za-z0-9_\-\./]+ <VariableNode>
   end

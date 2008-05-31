@@ -17,6 +17,11 @@ module NginxConfigFileYouShouldntUse
     end
   end
 
+  class WorkerProcessesNode < ::Treetop::Runtime::SyntaxNode
+    def eval(env = { })
+      env[:worker_processes] = Pars::NginxConfig::AST::WorkerProcesses.new(count.eval(env))
+    end
+  end
   
   class VariableNode < ::Treetop::Runtime::SyntaxNode
     def eval(env={})
