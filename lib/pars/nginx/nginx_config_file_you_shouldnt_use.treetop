@@ -19,6 +19,10 @@ grammar NginxConfigFileYouShouldntUse
     space_no_newline* "worker_processes" space_no_newline* count:variable space_no_newline* ";" space* <WorkerProcessesNode>
   end
   
+  rule include_files
+    space_no_newline* "include" space_no_newline* value:variable space_no_newline* ";" space* <IncludedFile>
+  end
+  
   rule definition
     space_no_newline* key:variable space_no_newline* value:variable space_no_newline* ";" space* <DefinitionNode>
   end
