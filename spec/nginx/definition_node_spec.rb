@@ -1,12 +1,12 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe NginxConfigFileYouShouldntUse::Definition, "worker_processes 6;" do
+describe NginxConfigFileYouShouldntUse::DefinitionNode, "worker_connections 8192;" do
   before(:all) do
     @parser = Pars::NginxConfig::Parser.new
   end
-  describe "defining a user and group" do
+  describe "defining worker_connections 8192" do
     before(:all) do
-      @result = @parser.parse("user atmos;\n")
+      @result = @parser.parse("worker_connections 8192;\n")
     end
     it "should return a parsed object" do
       @result.should_not be_nil
@@ -16,10 +16,10 @@ describe NginxConfigFileYouShouldntUse::Definition, "worker_processes 6;" do
         @evaluated_result = @result.eval({})
       end
       it "should have a key value for the variable name" do
-        @evaluated_result[:user].should_not be_nil
+        @evaluated_result[:worker_connections].should_not be_nil
       end
       it "should return a value for the key" do
-        @evaluated_result[:user].should eql('atmos')
+        @evaluated_result[:worker_connections].should eql('8192')
       end
     end
   end

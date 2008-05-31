@@ -22,6 +22,20 @@ module NginxConfigFileYouShouldntUse
       env[:worker_processes] = Pars::NginxConfig::AST::WorkerProcesses.new(count.eval(env))
     end
   end
+
+  class EventsNode < ::Treetop::Runtime::SyntaxNode
+    def eval(env={})
+      pp env
+      #env[:events] = Pars::NginxConfig::AST::Events.new(definitions.eval(env))
+    end
+  end
+
+  class DefinitionNode < ::Treetop::Runtime::SyntaxNode
+    def eval(env={})
+      env[key.eval(env).to_sym] = value.eval(env)
+      env
+    end
+  end
   
   class VariableNode < ::Treetop::Runtime::SyntaxNode
     def eval(env={})

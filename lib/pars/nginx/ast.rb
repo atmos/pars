@@ -19,6 +19,14 @@ module Pars
           @count = count
         end
       end
+      class Events
+        attr_accessor :worker_processes
+        attr_accessor :use
+        def initialize(worker_processes,use)
+          @worker_processes = worker_processes
+          @use = use
+        end
+      end
     end
   end
 end
