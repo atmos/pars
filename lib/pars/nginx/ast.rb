@@ -20,10 +20,10 @@ module Pars
         end
       end
       class Events
-        attr_accessor :worker_processes
+        attr_accessor :worker_connections
         attr_accessor :use
         def initialize(contents)
-          @worker_processes = contents[:worker_processes]
+          @worker_connections = contents[:worker_connections]
           @use = contents[:use]
         end
       end

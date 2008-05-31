@@ -25,8 +25,10 @@ module NginxConfigFileYouShouldntUse
 
   class EventsNode < ::Treetop::Runtime::SyntaxNode
     def eval(env={})
-      pp definitions.elements
-      env[:events] = Pars::NginxConfig::AST::Events.new(definitions.eval(env))
+      values = definitions.elements.inject({}) do |sum, part|
+        sum.merge(part.eval(env))
+      end
+      env[:events] = Pars::NginxConfig::AST::Events.new(values)
     end
   end
 
