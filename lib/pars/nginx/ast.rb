@@ -20,11 +20,23 @@ module Pars
         end
       end
       class Events
-        attr_accessor :worker_connections
-        attr_accessor :use
+        attr_accessor :worker_connections, :use
         def initialize(contents)
-          @worker_connections = contents[:worker_connections]
-          @use = contents[:use]
+          %w(worker_connections use).
+          each do |definition|
+            instance_variable_set "@#{definition}", contents[definition.to_sym]
+          end
+        end
+      end
+      
+      class Http
+        attr_accessor :include_files, :default_type, :access_log, :error_log , :sendfile, :tcp_nopush, :tcp_nodelay, :gzip, :gzip_http_version, :gzip_comp_level, :gzip_proxied, :gzip_buffers, :gzip_types, :gzip_disable
+        
+        def initialize(contents)
+          %w(include_files default_type access_log error_log  sendfile tcp_nopush tcp_nodelay gzip gzip_http_version gzip_comp_level gzip_proxied gzip_buffers gzip_types gzip_disable).
+          each do |definition|
+            instance_variable_set "@#{definition}", contents[definition.to_sym]
+          end
         end
       end
     end
