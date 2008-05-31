@@ -22,9 +22,9 @@ module Pars
       class Events
         attr_accessor :worker_processes
         attr_accessor :use
-        def initialize(worker_processes,use)
-          @worker_processes = worker_processes
-          @use = use
+        def initialize(contents)
+          @worker_processes = contents[:worker_processes]
+          @use = contents[:use]
         end
       end
     end

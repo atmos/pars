@@ -1,8 +1,12 @@
 grammar NginxConfigFileYouShouldntUse
   rule globals
-    user / pid_file / worker_processes / definition
+    user / pid_file / worker_processes / definition / events
   end
   
+  rule events
+    space_no_newline* "events" space_no_newline* "{" space* definitions:definition* space* "}" space* <EventsNode>
+  end
+
   rule user
     space_no_newline* "user" space_no_newline* user:variable space_no_newline* group:variable comment* space_no_newline* ";\n" <UserNode>
   end
@@ -13,10 +17,6 @@ grammar NginxConfigFileYouShouldntUse
   
   rule worker_processes
     space_no_newline* "worker_processes" space_no_newline* count:variable space_no_newline* ";" space* <WorkerProcessesNode>
-  end
-
-  rule events
-    space_no_newline* "events" space_no_newline* "{" space* definitions:definition* space* "}" space* <EventNode>
   end
   
   rule definition

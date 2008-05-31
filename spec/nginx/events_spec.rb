@@ -6,7 +6,7 @@ describe Pars::NginxConfig::AST::WorkerProcesses, "events { \nworker_connections
   end
   describe "defining events block" do
     before(:all) do
-      @result = @parser.parse("events { \nworker_connections    8192;\n use epoll; }\n")
+      @result = @parser.parse("events { \nworker_connections    8192;\n use epoll;\n}\n")
     end
     it "should return a parsed object" do
       @result.should_not be_nil
@@ -16,7 +16,8 @@ describe Pars::NginxConfig::AST::WorkerProcesses, "events { \nworker_connections
         @evaluated_result = @result.eval({})
       end
       it "should return 8192 connections" do
-        @evaluated_result[0].key.should eql("worker_connections")
+        @evaluated_result.worker_connections.should eql("8192")
+        @evaluated_result.use.should eql("epoll")
       end
     end
   end
