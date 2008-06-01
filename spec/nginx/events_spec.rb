@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + "/../spec_helper"
 
-describe Pars::NginxConfig::AST::WorkerProcesses, "events { \nworker_connections    8192;\n use epoll; }\n" do
+describe Pars::NginxConfig::AST::Events, "events { \nworker_connections    8192;\n use epoll; }\n" do
   before(:all) do
     @parser = Pars::NginxConfig::Parser.new
   end

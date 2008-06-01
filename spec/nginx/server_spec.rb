@@ -1,12 +1,12 @@
 require File.dirname(__FILE__) + "/../spec_helper"
 
-describe Pars::NginxConfig::AST::Http, "http { ... }" do
+describe Pars::NginxConfig::AST::Server, "server { ... }" do
   before(:all) do
     @parser = Pars::NginxConfig::Parser.new
   end
-  describe "defining http block" do
+  describe "defining server block" do
     before(:all) do
-      @result = @parser.parse(fixture("nginx/http.conf"))
+      @result = @parser.parse(fixture("nginx/server.conf"))
     end
     it "should return a parsed object" do
       @result.should_not be_nil
@@ -15,14 +15,16 @@ describe Pars::NginxConfig::AST::Http, "http { ... }" do
       before(:all) do
         @evaluated_result = @result.eval({})
       end
-      it "should set default_type to 'application/octet-stream'" do
-        @evaluated_result.default_type.should eql("application/octet-stream")
+      # TODO: account for both specified host and implicit
+      it "should set port to '80' and host to '127.0.0.1'" do
+        @evaluated_result.listen.should eql("80")
+        @evaluated_result.host.should eql("0.0.0.0")
       end
       it "should set access_log location to '/var/log/engineyard/nginx/access.log' and level to 'main'" do
         @evaluated_result.access_log.location.should eql("/var/log/engineyard/nginx/access.log")
         @evaluated_result.access_log.level.should eql("main")
       end
-      it "should set error_log location to '/dev/null' and level to 'notice'" do
+      it "should set error_log location to '/var/log/nginx.application.error.log' and level to 'notice'" do
         @evaluated_result.error_log.location.should eql("/dev/null")
         @evaluated_result.error_log.level.should eql("notice")
       end
