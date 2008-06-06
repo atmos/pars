@@ -62,6 +62,29 @@ module Pars
           end
         end
       end
+
+      class Upstream
+        attr_accessor :servers
+        
+        def initialize(contents)
+          pp contents
+        end
+      end
+
+      class Location
+        attr_accessor :zomg
+        
+        def initialize(contents)
+          pp contents
+        end
+      end
+      class Server
+        attr_accessor :zomg
+        
+        def initialize(contents)
+          pp contents
+        end
+      end
     end
   end
 end
