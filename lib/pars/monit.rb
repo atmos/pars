@@ -11,3 +11,8 @@ module Pars
     end
   end
 end
+
+require File.dirname(__FILE__) + '/monit/parser'
+require File.dirname(__FILE__) + '/monit/parse_result'
+require File.dirname(__FILE__) + '/monit/service'
+require File.dirname(__FILE__) + '/monit/services'
