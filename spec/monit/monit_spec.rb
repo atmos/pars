@@ -6,7 +6,7 @@ describe Pars::Monit::Parser, "monit's XML data fetched from http" do
   end
   describe " calling .parse" do
     before(:all) do
-      @result = @parser.parse(File.dirname(__FILE__)+'/../fixtures/monit/monit_output.xml')
+      @result = @parser.parse(File.read(File.dirname(__FILE__)+'/../fixtures/monit/monit_output.xml'))
     end
     it "should return a hash" do
       @result.should be_a_kind_of(Pars::Monit::ParseResult)
