@@ -35,6 +35,13 @@ module Pars
         end
       end
       
+      class AccessLog
+        attr_accessor :path, :level, :buffers
+        def initialize(path, level, buffers)
+          @path, @level, @buffers = path, level, buffers
+        end
+      end
+      
       class IncludeFile
         attr_accessor :glob
         def initialize(glob)

@@ -54,4 +54,13 @@ module NginxConfigFileYouShouldntUse
   class CommentNode < ::Treetop::Runtime::SyntaxNode
     def eval(env={}); env end
   end
+  
+  class AccessLogNode < ::Treetop::Runtime::SyntaxNode
+    def eval(env={})
+      buffers = buffers.eval(env) rescue ''
+      env[:access_logs] = Pars::NginxConfig::AST::AccessLog.new(path.eval(env), level.eval(env), buffers)
+      env 
+    end
+  end
+  
 end
