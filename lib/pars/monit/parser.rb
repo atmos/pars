@@ -7,7 +7,7 @@ module Pars
 
       def parse(file)
         @filename = file
-        result = ::XmlSimple.xml_in File.open(@filename).read, {'KeepRoot' => true}
+        result = ::XmlSimple.xml_in @filename, {'KeepRoot' => true}
         ParseResult.new(result)
       end
     end
