@@ -63,4 +63,24 @@ module NginxConfigFileYouShouldntUse
     end
   end
   
+  class UpstreamNode < ::Treetop::Runtime::SyntaxNode
+    def eval(env={})
+      values = definitions.elements.inject({}) do |sum, part|
+        evaluated = part.eval(env)
+        unless evaluated.nil?
+          unless evaluated[:server].nil?
+            sum[:servers] ||= [ ]
+            sum[:servers].push(evaluated[:server])
+          else
+            sum.merge(evaluated)
+          end
+        end
+        sum
+      end
+      env[:upstreams] ||= [ ]
+      env[:upstreams].push(Pars::NginxConfig::AST::Upstream.new(name.eval(env), values.delete(:servers), values))
+      env 
+    end
+  end
+  
 end

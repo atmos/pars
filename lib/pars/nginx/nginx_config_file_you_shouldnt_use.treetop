@@ -1,14 +1,18 @@
 grammar NginxConfigFileYouShouldntUse
   rule globals
-    user / pid_file / worker_processes / access_log_line / definition / events
+    user / pid_file / worker_processes / access_log_line / definition / upstream / events
   end
   
   rule events
     space_no_newline* "events" space_no_newline* "{" space* definitions:definition* space* "}" space* <EventsNode>
   end
 
+  rule upstream
+    space_no_newline* "upstream" space_no_newline* name:variable space* "{" space* definitions:definition* space* "}" space* <UpstreamNode>
+  end
+
   rule user
-    space_no_newline* "user" space_no_newline+ user:variable space_no_newline+ group:variable comment* space_no_newline* ";\n" <UserNode>
+    space_no_newline* "user" space_no_newline+ user:variable space_no_newline+ group:variable eol <UserNode>
   end
   
   rule access_log_line
@@ -16,7 +20,7 @@ grammar NginxConfigFileYouShouldntUse
   end
 
   rule pid_file
-    space_no_newline* "pid" space_no_newline* file:variable space_no_newline* ";" space* <PidFileNode>
+    space_no_newline* "pid" space_no_newline* file:variable space_no_newline* eol <PidFileNode>
   end
   
   rule worker_processes
@@ -28,11 +32,11 @@ grammar NginxConfigFileYouShouldntUse
   end
   
   rule definition
-    space_no_newline* key:variable space_no_newline* value:variable space_no_newline* ";" space* <DefinitionNode>
+    space_no_newline* key:variable space_no_newline* value:variable space_no_newline* eol <DefinitionNode>
   end
   
   rule assignment
-    space_no_newline* key:variable space_no_newline* '=' space_no_newline* value:variable comment* space_no_newline* ";\n"
+    space_no_newline* key:variable space_no_newline* '=' space_no_newline* value:variable comment* space_no_newline* eol
   end
 
   rule glob
@@ -40,11 +44,11 @@ grammar NginxConfigFileYouShouldntUse
   end
   
   rule variable
-    space_no_newline* [A-Za-z0-9_\-\./]+ <VariableNode>
+    space_no_newline* [A-Za-z0-9_\-\./:]+ <VariableNode>
   end
   
   rule eol
-    ";\n" / ";" comment+ "\n"
+    ";" space+ / ";" comment+ "\n"
   end
 
   rule comment

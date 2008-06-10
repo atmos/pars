@@ -71,10 +71,22 @@ module Pars
       end
 
       class Upstream
-        attr_accessor :servers
+        attr_accessor :name, :servers, :contents
         
-        def initialize(contents)
-          pp contents
+        def initialize(name, servers, contents)
+          @servers ||= [ ]
+          servers.each do |server|
+            host, port = server.split(/:/)
+            @servers.push(UpstreamServer.new(host, port||80))
+          end
+          @name, @contents = name, contents
+        end
+      end
+      
+      class UpstreamServer
+        attr_accessor :host, :port
+        def initialize(host, port)
+          @host, @port = host, port
         end
       end
 
