@@ -20,11 +20,15 @@ grammar NginxConfigFileYouShouldntUse
   end
   
   rule include_files
-    space_no_newline* "include" space_no_newline* value:variable space_no_newline* ";" space* <IncludedFile>
+    space_no_newline* "include" space_no_newline* value:glob space_no_newline* ";" space* <IncludedFile>
   end
   
   rule definition
     space_no_newline* key:variable space_no_newline* value:variable space_no_newline* ";" space* <DefinitionNode>
+  end
+  
+  rule glob
+    space_no_newline* [A-Za-z0-9_\-\./\*]+ <GlobNode>
   end
   
   rule variable

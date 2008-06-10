@@ -38,6 +38,12 @@ module NginxConfigFileYouShouldntUse
       env
     end
   end
+
+  class GlobNode < ::Treetop::Runtime::SyntaxNode
+    def eval(env={})
+      text_value
+    end
+  end
   
   class VariableNode < ::Treetop::Runtime::SyntaxNode
     def eval(env={})
