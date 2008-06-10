@@ -8,13 +8,13 @@ describe Pars::NginxConfig::AST::LogFormat, "log_format main '$remote_addr - $re
     before(:all) do
       @result = @parser.parse("log_format main '$remote_addr - $remote_user [$time_local] ';\n")
     end
-    it "should return a parsed object" do
-      @result.should_not be_nil
-    end
+    it "should return a parsed object" # do
+     #      @result.should_not be_nil
+     #    end
     describe "evaluating the result" do
-      before(:all) do
-        @evaluated_result = @result.eval({})
-      end
+      # before(:all) do
+      #   @evaluated_result = @result.eval({})
+      # end
     end
   end
 end
