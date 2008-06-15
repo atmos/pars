@@ -89,7 +89,15 @@ module Pars
           @host, @port = host, port
         end
       end
-
+      
+      class IncludedFile
+        attr_accessor :glob
+        
+        def initialize(glob)
+          @glob = glob
+        end
+      end
+      
       class Location
         attr_accessor :zomg
         

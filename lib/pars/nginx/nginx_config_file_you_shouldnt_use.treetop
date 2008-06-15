@@ -1,6 +1,6 @@
 grammar NginxConfigFileYouShouldntUse
   rule globals
-    user / pid_file / worker_processes / access_log_line / definition / upstream / events
+    user / pid_file / worker_processes / access_log_line / include_files / definition / upstream / events
   end
   
   rule events
@@ -40,7 +40,7 @@ grammar NginxConfigFileYouShouldntUse
   end
 
   rule glob
-    space_no_newline* [A-Za-z0-9_\-\./\*]+ <GlobNode>
+    space_no_newline* [A-Za-z0-9_\-\./*]+ <GlobNode>
   end
   
   rule variable

@@ -63,6 +63,14 @@ module NginxConfigFileYouShouldntUse
     end
   end
   
+  class IncludedFile < ::Treetop::Runtime::SyntaxNode
+    def eval(env={})
+      env[:includes] ||= [ ]
+      env[:includes].push(Pars::NginxConfig::AST::IncludedFile.new(value.eval(env)))
+      env 
+    end
+  end
+  
   class UpstreamNode < ::Treetop::Runtime::SyntaxNode
     def eval(env={})
       values = definitions.elements.inject({}) do |sum, part|
