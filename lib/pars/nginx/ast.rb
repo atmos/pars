@@ -112,6 +112,12 @@ module Pars
           pp contents
         end
       end
+      class Comments
+        attr_accessor :lines
+        def initialize(lines)
+          @lines = lines
+        end
+      end
     end
   end
 end

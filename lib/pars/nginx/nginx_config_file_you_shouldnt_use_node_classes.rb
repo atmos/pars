@@ -1,7 +1,7 @@
 module NginxConfigFileYouShouldntUse
   class ConfigFile < ::Treetop::Runtime::SyntaxNode
     def eval(env={})
-      env
+      # pp env.eval({})
     end
   end
   
@@ -48,6 +48,21 @@ module NginxConfigFileYouShouldntUse
   class VariableNode < ::Treetop::Runtime::SyntaxNode
     def eval(env={})
       text_value
+    end
+  end
+
+  class CommentsNode < ::Treetop::Runtime::SyntaxNode
+    def eval(env={})
+      values = [ ]
+      elements.each do |part|
+        values.push(part.text_value)
+      end
+      env[:comments] ||= [ ]
+      env[:comments].push(Pars::NginxConfig::AST::Comments.new(values))
+      
+      # values.each do |value|
+      #   pp value
+      # end
     end
   end
   

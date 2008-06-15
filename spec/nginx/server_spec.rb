@@ -7,10 +7,11 @@ describe Pars::NginxConfig::AST::Server, "server { ... }" do
   describe "defining server block" do
     before(:all) do
       @result = @parser.parse(fixture("nginx/server.conf"))
+      # pp @parser
     end
-    it "should return a parsed object" # do
-     #      @result.should_not be_nil
-     #    end
+    it "should return a parsed object" do
+      # @result.should_not be_nil
+    end
     describe "evaluating the result" do
       # before(:all) do
       #   @evaluated_result = @result.eval({})

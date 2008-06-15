@@ -1,6 +1,9 @@
 grammar NginxConfigFileYouShouldntUse
+  # rule config_file
+  #   user / pid_file / worker_
+  # end
   rule globals
-    user / pid_file / worker_processes / access_log_line / include_files / definition / upstream / events
+    user / pid_file / worker_processes / access_log_line / include_files / definition / upstream / events / server_block / comments / . <ConfigFile>
   end
   
   rule events
@@ -31,6 +34,14 @@ grammar NginxConfigFileYouShouldntUse
     space_no_newline* "include" space_no_newline* value:glob space_no_newline* ";" space* <IncludedFile>
   end
   
+  rule server_block
+    space_no_newline* "server" space_no_newline* name:glob space* "{" space* definitions:server_contents* space* "}" space* <ServerNode>
+  end
+  
+  rule server_contents
+    comments / definition / access_log_line
+  end
+  
   rule definition
     space_no_newline* key:variable space_no_newline* value:variable space_no_newline* eol <DefinitionNode>
   end
@@ -50,9 +61,13 @@ grammar NginxConfigFileYouShouldntUse
   rule eol
     ";" space+ / ";" comment+ "\n"
   end
-
+  
+  rule comments
+    comment* <CommentsNode>
+  end
+  
   rule comment
-    space_no_newline* "#" [^\n]* <CommentNode>
+    space_no_newline* "#" [^\n]* "\n" <CommentNode>
   end
 
   rule blank_line
