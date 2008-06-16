@@ -106,10 +106,13 @@ module Pars
         end
       end
       class Server
-        attr_accessor :zomg
-        
+        @@attribs = {:listen => 80, :root => '/data/myapp/current/public', :host => '0.0.0.0', :client_max_body_size => '50M'}
+        attr_accessor :vars
         def initialize(contents)
-          pp contents
+          @vars = { }
+          @@attribs.each do |k,v|
+            @vars[k] = contents[k] || @@attribs[k]
+          end
         end
       end
       class Comments

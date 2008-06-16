@@ -10,17 +10,21 @@ describe Pars::NginxConfig::AST::Server, "server { ... }" do
       # pp @parser
     end
     it "should return a parsed object" do
-      # @result.should_not be_nil
+      @result.should_not be_nil
     end
     describe "evaluating the result" do
-      # before(:all) do
-      #   @evaluated_result = @result.eval({})
-      # end
+      before(:all) do
+        @evaluated_result = @result.eval({})[:servers].first
+        # pp @evaluated_result
+      end
       # TODO: account for both specified host and implicit
-      it "should set port to '80' and host to '127.0.0.1'" # do
-       #        @evaluated_result.listen.should eql("80")
-       #        @evaluated_result.host.should eql("0.0.0.0")
-       #      end
+      it "should set port to 80" do
+        @evaluated_result.vars[:listen].should eql(80)
+      end
+      it "should set the port to '0.0.0.0'" do
+        @evaluated_result.vars[:host].should eql("0.0.0.0")
+      end
+
       it "should set access_log location to '/var/log/engineyard/nginx/access.log' and level to 'main'" # do
        #        @evaluated_result.access_log.location.should eql("/var/log/engineyard/nginx/access.log")
        #        @evaluated_result.access_log.level.should eql("main")

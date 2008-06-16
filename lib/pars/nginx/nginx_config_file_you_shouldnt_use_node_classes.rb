@@ -106,4 +106,15 @@ module NginxConfigFileYouShouldntUse
     end
   end
   
+  class ServerNode < ::Treetop::Runtime::SyntaxNode
+    def eval(env={})
+      values = definitions.elements.inject({}) do |sum, element|
+        element.eval(sum)
+        sum
+      end
+      env[:servers] ||= [ ]
+      env[:servers].push(Pars::NginxConfig::AST::Server.new(env))
+      env
+    end
+  end
 end
