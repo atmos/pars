@@ -22,7 +22,8 @@ module XenConfigFileYouShouldntUse
   
   class CommentNode < ::Treetop::Runtime::SyntaxNode
     def eval(env={})
-      text_value
+      env[:comments] ||= [ ]
+      env[:comments].push(value.text_value)
     end
   end
   

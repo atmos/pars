@@ -32,7 +32,7 @@ grammar XenConfigFileYouShouldntUse
   end
 
   rule comment
-    space_no_newline* [!\#] [^\n]* "\n" space* <CommentNode>
+    space_no_newline* [!\#] value:([^\n])* "\n" space* <CommentNode>
   end
 
   rule blank_line

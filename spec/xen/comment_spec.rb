@@ -23,7 +23,7 @@ describe XenConfigFileYouShouldntUse::CommentNode do
           @evaluated_result = @result.eval({})
         end
         it "should return the value of the assignment" do
-          @evaluated_result.should == {} #"# zomg comment\n"
+          @evaluated_result.should == {:comments => [" zomg comment"]}
         end
       end
     end
