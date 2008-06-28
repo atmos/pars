@@ -1,0 +1,38 @@
+grammar XenConfigFileYouShouldntUse
+  rule variable
+    space_no_newline* [A-Za-z0-9_\-\./]+ <VariableNode>
+  end
+  
+  rule number
+    [0-9]+ <NumberNode>
+  end
+  
+  
+  rule string
+    ([A-Za-z_-])+ <StringLiteral>
+  end
+
+  rule array_element
+    quoted_string / number
+  end
+
+  rule comment
+    space_no_newline* [!\#] [^\n]* "\n" space* <CommentNode>
+  end
+
+  rule blank_line
+    "\n" <DummyNode>
+  end
+
+  rule non_space_char
+    ![ \n] .
+  end
+
+  rule space_no_newline
+    [ \t]
+  end
+
+  rule space
+    space_no_newline / "\n"
+  end
+end
