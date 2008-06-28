@@ -27,5 +27,24 @@ describe XenConfigFileYouShouldntUse::AssignmentNode do
         end
       end
     end
+    describe "with a single quoted string" do
+      before(:all) do
+        @result = @parser.parse("cpu_environment = \'ey00-s00348\'\n")
+      end
+      it "should return a parse representation of the assignment" do
+        @result.should_not be_nil
+      end
+      it "should return an assignment node you shouldn't use" do
+        @result.should be_a_kind_of(XenConfigFileYouShouldntUse::AssignmentNode)
+      end
+      describe " calling .eval" do
+        before(:all) do
+          @evaluated_result = @result.eval({})
+        end
+        it "should return the value of the assignment" do
+          @evaluated_result[:cpu_environment].should == "ey00-s00348"
+        end
+      end
+    end
   end
 end
