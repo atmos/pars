@@ -23,7 +23,7 @@ describe XenConfigFileYouShouldntUse::AssignmentNode do
           @evaluated_result = @result.eval({})
         end
         it "should return the value of the assignment" do
-          @evaluated_result.should == 348
+          @evaluated_result[:name].should == 348
         end
       end
     end
