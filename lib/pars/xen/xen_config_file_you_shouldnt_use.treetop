@@ -1,4 +1,8 @@
 grammar XenConfigFileYouShouldntUse
+  rule config_file
+    comment
+  end
+  
   rule variable
     space_no_newline* [A-Za-z0-9_\-\./]+ <VariableNode>
   end
