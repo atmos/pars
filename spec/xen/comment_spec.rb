@@ -16,14 +16,14 @@ describe XenConfigFileYouShouldntUse::CommentNode do
         @result.should_not be_nil
       end
       it "should return a comment node you shouldn't use" do
-        @result.should be_a_kind_of(XenConfigFileYouShouldntUse::CommentNode)
+        @result.should be_a_kind_of(XenConfigFileYouShouldntUse::ConfigFileNode)
       end
       describe " calling .eval" do
         before(:all) do
           @evaluated_result = @result.eval({})
         end
         it "should return the value of the assignment" do
-          @evaluated_result.should == "# zomg comment\n"
+          @evaluated_result.should == {} #"# zomg comment\n"
         end
       end
     end

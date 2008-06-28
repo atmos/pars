@@ -1,18 +1,10 @@
 module XenConfigFileYouShouldntUse
-  class ConfigFile < ::Treetop::Runtime::SyntaxNode
+  class ConfigFileNode < ::Treetop::Runtime::SyntaxNode
     def eval(env={})
       elements.each do |e|
         begin
-          pp e.eval(env)
-          # result = e.eval(env)
-          # if result.kind_of?(String)
-          #   pp result if env.nil?
-          #   env[result] = nil
-          # else
-          #   env.merge(result)
-          # end
+          e.eval(env)
         rescue => exception
-          # pp e
           puts exception.backtrace
           pp "ZOMFG #{exception.message}"
         end

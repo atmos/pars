@@ -16,7 +16,7 @@ describe XenConfigFileYouShouldntUse::VariableNode do
         @result.should_not be_nil
       end
       it "should return an assignment node you shouldn't use" do
-        @result.should be_a_kind_of(XenConfigFileYouShouldntUse::VariableNode)
+        @result.should be_a_kind_of(XenConfigFileYouShouldntUse::ConfigFileNode)
       end
       describe " calling .eval" do
         before(:all) do
@@ -35,7 +35,7 @@ describe XenConfigFileYouShouldntUse::VariableNode do
         @result.should_not be_nil
       end
       it "should return an assignment node you shouldn't use" do
-        @result.should be_a_kind_of(XenConfigFileYouShouldntUse::VariableNode)
+        @result.should be_a_kind_of(XenConfigFileYouShouldntUse::ConfigFileNode)
       end
       describe " calling .eval" do
         before(:all) do

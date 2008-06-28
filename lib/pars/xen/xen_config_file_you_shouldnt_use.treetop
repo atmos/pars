@@ -1,6 +1,6 @@
 grammar XenConfigFileYouShouldntUse
   rule config_file
-    comment / assignment / variable
+    (comment / blank_line / assignment)* <ConfigFileNode>
   end
   
   rule assignment
@@ -9,7 +9,7 @@ grammar XenConfigFileYouShouldntUse
   end
   
   rule array_list
-    space* value:variable space* remains:(',' space* var:array_list)* <ArrayListNode> {
+    space* value:variable space* remains:(',' space* var:array_list space* ','?)* <ArrayListNode> {
       def variables(env = {})
         [value.eval(env)] + remains.elements.map { |command_and_var|  command_and_var.var.eval(env) }
       end
@@ -36,7 +36,7 @@ grammar XenConfigFileYouShouldntUse
   end
 
   rule blank_line
-    "\n" <DummyNode>
+    "\n"
   end
 
   rule non_space_char
