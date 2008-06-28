@@ -54,7 +54,17 @@ module XenConfigFile
     
     class ArrayAssignment < Assignment
       def to_s
-        "TODO"
+        if rhs.size > 1
+          str = "#{lhs} = [ "
+          buf = ''
+          rhs.each do |val|
+            buf << ' '*str.size << val.to_s << ",\n"
+          end
+          buf << ' '*str.size << ']' << "\n"
+          str << "\n" << buf
+        else
+          "#{lhs} = [ #{rhs.first.to_s} ]"
+        end
       end
     end
     
