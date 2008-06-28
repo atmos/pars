@@ -55,7 +55,7 @@ describe Pars::Xen::Parser, "parsing" do
          
          describe "disks" do
            before(:all) do
-             @disks = @vars.disks
+             @disks = @vars[:disk]
            end
            it "should know about the disks exposed to the domain" do
              @disks.should have(3).entries

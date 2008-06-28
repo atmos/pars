@@ -6,7 +6,8 @@ module XenConfigFile
       def initialize(contents)
         @vars = [ ]
         @comments = contents.delete(:comments)
-        @disks = Disk.build(contents)
+        @disks = ArrayAssignment.new(:disk, Disk.build(contents))
+        contents[:variables] << @disks
         
         contents[:variables].each do |var|
           @vars << var
@@ -20,6 +21,13 @@ module XenConfigFile
       def []=(key, value)
         @vars << (value.kind_of?(Array) ? ArrayAssignment.new(key, value) : Assignment.new(key, value))
         value
+      end
+      
+      def to_s
+        str = ''
+        @comments.each { |c| str << "##{c}\n" }
+        @vars.each { |v| str << "#{v}\n" }
+        str
       end
     end
     
@@ -39,7 +47,7 @@ module XenConfigFile
       def initialize(volume, device, mode)
         @volume, @device, @mode = volume, device, mode
       end
-      def to_s; "#{volume},#{device},#{mode}" end
+      def to_s; "\"#{volume},#{device},#{mode}\"" end
     end
     
     class Assignment
@@ -48,7 +56,7 @@ module XenConfigFile
         @lhs, @rhs = lhs, rhs
       end
       def to_s
-        "#{lhs} = #{rhs}"
+        "#{lhs} = #{rhs.to_s}"
       end
     end
     
@@ -60,7 +68,7 @@ module XenConfigFile
           rhs.each do |val|
             buf << ' '*str.size << val.to_s << ",\n"
           end
-          buf << ' '*str.size << ']' << "\n"
+          buf << ' '*str.size << ']'
           str << "\n" << buf
         else
           "#{lhs} = [ #{rhs.first.to_s} ]"

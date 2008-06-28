@@ -46,7 +46,7 @@ describe XenConfigFile::AST::ArrayAssignment do
     end
     
     it "should to_s properly" do
-      @ass.to_s.should == "number = [ \n           42,\n           forty-two,\n           666,\n           ]\n"
+      @ass.to_s.should == "number = [ \n           42,\n           forty-two,\n           666,\n           ]"
     end
   end
 end
@@ -80,7 +80,7 @@ describe XenConfigFile::AST::Disk do
       @disk.mode.should == 'w'
     end
     it "should handle writing itself out" do
-      @disk.to_s.should == 'phy:/dev/ey00-data4/root-s00348,sda1,w'
+      @disk.to_s.should == '"phy:/dev/ey00-data4/root-s00348,sda1,w"'
     end
   end
   
