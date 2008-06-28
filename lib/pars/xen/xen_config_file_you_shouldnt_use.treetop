@@ -1,6 +1,6 @@
 grammar XenConfigFileYouShouldntUse
   rule config_file
-    comment / assignment
+    comment / assignment / variable
   end
   
   rule assignment
@@ -8,8 +8,8 @@ grammar XenConfigFileYouShouldntUse
   end
   
   rule variable
-    space_no_newline* number space* comment* <VariableNode> /
-    space_no_newline* string space* comment* <VariableNode>
+    space_no_newline* value:number space* comment* <VariableNode> /
+    space_no_newline* value:string space* comment* <VariableNode>
   end
   
   rule number

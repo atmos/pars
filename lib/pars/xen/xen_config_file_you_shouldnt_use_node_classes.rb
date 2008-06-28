@@ -35,7 +35,7 @@ module XenConfigFileYouShouldntUse
   
   class VariableNode < ::Treetop::Runtime::SyntaxNode
     def eval(env={})
-      text_value
+      value.eval(env)
     end
   end
 
@@ -47,7 +47,7 @@ module XenConfigFileYouShouldntUse
   
   class NumberNode < ::Treetop::Runtime::SyntaxNode
     def eval(env={})
-      values.text_value.to_i
+      text_value.to_i
     end
   end
 end
