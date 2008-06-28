@@ -22,8 +22,11 @@ describe XenConfigFileYouShouldntUse::AssignmentNode do
         before(:all) do
           @evaluated_result = @result.eval({})
         end
+        it "should return an AST instance of the config file" do
+          @evaluated_result.should be_a_kind_of(XenConfigFile::AST::ConfigFile)          
+        end
         it "should return the value of the assignment" do
-          @evaluated_result[:cpu_environment].should == "ey00-s00348"
+          @evaluated_result.vars[:cpu_environment].should == "ey00-s00348"
         end
       end
     end
@@ -41,8 +44,11 @@ describe XenConfigFileYouShouldntUse::AssignmentNode do
         before(:all) do
           @evaluated_result = @result.eval({})
         end
+        it "should return an AST instance of the config file" do
+          @evaluated_result.should be_a_kind_of(XenConfigFile::AST::ConfigFile)          
+        end
         it "should return the value of the assignment" do
-          @evaluated_result[:cpu_environment].should == "ey00-s00348"
+          @evaluated_result.vars[:cpu_environment].should == "ey00-s00348"
         end
       end
     end

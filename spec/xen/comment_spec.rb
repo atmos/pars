@@ -22,8 +22,11 @@ describe XenConfigFileYouShouldntUse::CommentNode do
         before(:all) do
           @evaluated_result = @result.eval({})
         end
+        it "should return an AST instance of the config file" do
+          @evaluated_result.should be_a_kind_of(XenConfigFile::AST::ConfigFile)          
+        end
         it "should return the value of the assignment" do
-          @evaluated_result.should == {:comments => [" zomg comment"]}
+          @evaluated_result.comments.should == [" zomg comment"]
         end
       end
     end

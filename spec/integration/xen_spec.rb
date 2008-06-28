@@ -19,40 +19,62 @@ describe Pars::Xen::Parser, "parsing" do
        before(:all) do
          @evaluated_result = @result.eval
        end
-       it "should return a hash of the evaluated string" do
-         @evaluated_result.should be_a_kind_of(Hash)          
+       it "should return an AST instance of the config file" do
+         @evaluated_result.should be_a_kind_of(XenConfigFile::AST::ConfigFile)          
        end
 
-       describe " variables defined" do
+       describe " variables " do
          before(:all) do
            @vars = @evaluated_result
          end
+         
          it "should know the cpu_cap" do
-           @vars[:cpu_cap].should == 100
+           @vars.vars[:cpu_cap].should == 100
          end
          it "should know the root disk" do
-           @vars[:root].should == '/dev/sda1 ro'
+           @vars.vars[:root].should == '/dev/sda1 ro'
          end
          it "should know the name for the domain" do
-           @vars[:name].should == "ey00-s00348"
+           @vars.vars[:name].should == "ey00-s00348"
          end
          it "should know the kernel for the domain" do
-           @vars[:kernel].should == "/boot/vmlinuz-2.6.18-xenU"
+           @vars.vars[:kernel].should == "/boot/vmlinuz-2.6.18-xenU"
          end
          it "should know the vcpu count for the domain" do
-           @vars[:vcpus].should == 1
+           @vars.vars[:vcpus].should == 1
          end
          it "should know the maxmem settings for the domain" do
-           @vars[:maxmem].should == 4096
+           @vars.vars[:maxmem].should == 4096
          end
          it "should know the virtual interfaces" do
-           @vars[:vif].should == ["bridge=xenbr0"]
+           @vars.vars[:vif].should == ["bridge=xenbr0"]
          end
          it "should know the memory allocated for the domain" do
-           @vars[:memory].should == 712
+           @vars.vars[:memory].should == 712
          end
-         it "should know about the disks exposed to the domain" do
-           @vars[:disk].should == ["phy:/dev/ey00-data4/root-s00348,sda1,w", "phy:/dev/ey00-data4/swap-s00348,sda2,w", "phy:/dev/ey00-data4/gfs-00218,sdb1,w!"]
+         
+         describe "disks" do
+           before(:all) do
+             @disks = @vars.disks
+           end
+           it "should know about the disks exposed to the domain" do
+             @disks.should have(3).entries
+           end
+
+           describe "variables" do
+             before(:all) do
+               @disk = @disks.first
+             end
+             it "should know the volume" do
+               @disk.volume.should == 'phy:/dev/ey00-data4/root-s00348'
+             end
+             it "should know the device" do
+               @disk.device.should == 'sda1'
+             end
+             it "should know the mode" do
+               @disk.mode.should == 'w'
+             end
+           end
          end
        end
      end

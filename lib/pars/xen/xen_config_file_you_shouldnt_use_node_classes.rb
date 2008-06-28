@@ -9,7 +9,7 @@ module XenConfigFileYouShouldntUse
           pp "ZOMFG #{exception.message}"
         end
       end
-      env
+      XenConfigFile::AST::ConfigFile.new(env)
     end
   end
   
