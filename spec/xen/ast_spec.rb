@@ -77,16 +77,16 @@ describe XenConfigFile::AST::Disk do
     end
   end
   
-  # describe "build" do
-  #   before(:all) do
-  #     @params = ["phy:/dev/ey00-data4/root-s00348,sda1,w", "phy:/dev/ey00-data4/swap-s00348,sda2,w", "phy:/dev/ey00-data4/gfs-00218,sdb1,w!"]
-  #     @disks = XenConfigFile::AST::Disk.build(XenConfigFile::AST::ArrayAssignment.new(:disk, @params))
-  #   end
-  #   it "should build successfully" do
-  #     @disks.should_not be_nil
-  #   end
-  #   it "should have three elements" do
-  #     @disks.should have(3).entries
-  #   end
-  # end
+  describe "build" do
+    before(:all) do
+      @params = ["phy:/dev/ey00-data4/root-s00348,sda1,w", "phy:/dev/ey00-data4/swap-s00348,sda2,w", "phy:/dev/ey00-data4/gfs-00218,sdb1,w!"]
+      @disks = XenConfigFile::AST::Disk.build({:variables => [XenConfigFile::AST::ArrayAssignment.new(:disk, @params)]})
+    end
+    it "should build successfully" do
+      @disks.should_not be_nil
+    end
+    it "should have three elements" do
+      @disks.should have(3).entries
+    end
+  end
 end

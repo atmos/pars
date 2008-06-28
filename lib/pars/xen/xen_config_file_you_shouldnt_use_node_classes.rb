@@ -49,19 +49,18 @@ module XenConfigFileYouShouldntUse
   
   class DoubleQuotedStringLiteralNode < ::Treetop::Runtime::SyntaxNode
     def eval(env={})
-      elements[1].text_value
+      XenConfigFile::AST::LiteralString.new(elements[1].text_value)
     end
   end
   
   class SingleQuotedStringLiteralNode < ::Treetop::Runtime::SyntaxNode
     def eval(env={})
-      elements[1].text_value
+      XenConfigFile::AST::LiteralString.new(elements[1].text_value)
     end
   end
 
   class StringLiteralNode < ::Treetop::Runtime::SyntaxNode
     def eval(env={})
-      # XenConfigFile::AST::Variable.new(env[:lhs].value, text_value)
       text_value
     end
   end
