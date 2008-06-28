@@ -26,10 +26,10 @@ describe XenConfigFileYouShouldntUse::AssignmentNode do
           @evaluated_result.should be_a_kind_of(XenConfigFile::AST::ConfigFile)          
         end
         it "should return the first value of the array assignment" do
-          @evaluated_result.vars[:cpu_environment].first.should == 348
+          @evaluated_result[:cpu_environment].first.should == 348
         end
         it "should return the second value of the array assignment" do
-          @evaluated_result.vars[:cpu_environment].last.should == 349
+          @evaluated_result[:cpu_environment].last.should == 349
         end
       end
     end
@@ -51,13 +51,13 @@ describe XenConfigFileYouShouldntUse::AssignmentNode do
           @evaluated_result.should be_a_kind_of(XenConfigFile::AST::ConfigFile)          
         end
         it "should return the value of the single quoted string as the first element" do
-          @evaluated_result.vars[:cpu_environment].first.should == "ey00-s00348"
+          @evaluated_result[:cpu_environment].first.should == "ey00-s00348"
         end
         it "should return the value of the number as the second element" do
-          @evaluated_result.vars[:cpu_environment][1].should == 42
+          @evaluated_result[:cpu_environment][1].should == 42
         end
         it "should return the value of the single quoted string as the first element" do
-          @evaluated_result.vars[:cpu_environment].last.should == "James Brown"
+          @evaluated_result[:cpu_environment].last.should == "James Brown"
         end
       end
     end

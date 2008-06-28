@@ -23,11 +23,15 @@ describe XenConfigFile::AST::Disk do
     it "should assign the mode" do
       @disk.mode.should == 'w'
     end
+    it "should handle writing itself out" do
+      @disk.to_s.should == 'phy:/dev/ey00-data4/root-s00348,sda1,w'
+    end
   end
+  
   describe "build" do
     before(:all) do
       @params = ["phy:/dev/ey00-data4/root-s00348,sda1,w", "phy:/dev/ey00-data4/swap-s00348,sda2,w", "phy:/dev/ey00-data4/gfs-00218,sdb1,w!"]
-      @disks = XenConfigFile::AST::Disk.build(@params)
+      @disks = XenConfigFile::AST::Disk.build(XenConfigFile::AST::ArrayAssignment.new(:disk, @params))
     end
     it "should build successfully" do
       @disks.should_not be_nil

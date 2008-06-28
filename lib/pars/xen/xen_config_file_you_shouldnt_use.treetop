@@ -5,7 +5,7 @@ grammar XenConfigFileYouShouldntUse
   
   rule assignment
     space_no_newline* lhs:variable space_no_newline* '=' space_no_newline* rhs:variable space* comment* <AssignmentNode> /
-    space_no_newline* lhs:variable space_no_newline* '=' space_no_newline* '[' space* rhs:array_list space* ']' space* comment* <AssignmentNode>
+    space_no_newline* lhs:variable space_no_newline* '=' space_no_newline* '[' space* rhs:array_list space* ']' space* comment* <ArrayAssignmentNode>
   end
   
   rule array_list

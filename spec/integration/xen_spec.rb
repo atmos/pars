@@ -29,28 +29,28 @@ describe Pars::Xen::Parser, "parsing" do
          end
          
          it "should know the cpu_cap" do
-           @vars.vars[:cpu_cap].should == 100
+           @vars[:cpu_cap].should == 100
          end
          it "should know the root disk" do
-           @vars.vars[:root].should == '/dev/sda1 ro'
+           @vars[:root].should == '/dev/sda1 ro'
          end
          it "should know the name for the domain" do
-           @vars.vars[:name].should == "ey00-s00348"
+           @vars[:name].should == "ey00-s00348"
          end
          it "should know the kernel for the domain" do
-           @vars.vars[:kernel].should == "/boot/vmlinuz-2.6.18-xenU"
+           @vars[:kernel].should == "/boot/vmlinuz-2.6.18-xenU"
          end
          it "should know the vcpu count for the domain" do
-           @vars.vars[:vcpus].should == 1
+           @vars[:vcpus].should == 1
          end
          it "should know the maxmem settings for the domain" do
-           @vars.vars[:maxmem].should == 4096
+           @vars[:maxmem].should == 4096
          end
          it "should know the virtual interfaces" do
-           @vars.vars[:vif].should == ["bridge=xenbr0"]
+           @vars[:vif].should == ["bridge=xenbr0"]
          end
          it "should know the memory allocated for the domain" do
-           @vars.vars[:memory].should == 712
+           @vars[:memory].should == 712
          end
          
          describe "disks" do

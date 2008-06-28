@@ -27,7 +27,7 @@ describe XenConfigFileYouShouldntUse::AssignmentNode do
         end
         
         it "should return the value of the assignment" do
-          @evaluated_result.vars[:cpu_number].should == 348
+          @evaluated_result[:cpu_number].should == 348
         end
       end
     end

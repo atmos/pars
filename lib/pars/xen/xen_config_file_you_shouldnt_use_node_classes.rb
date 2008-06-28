@@ -1,6 +1,7 @@
 module XenConfigFileYouShouldntUse
   class ConfigFileNode < ::Treetop::Runtime::SyntaxNode
     def eval(env={})
+      env[:variables] ||= [ ]
       elements.each do |e|
         begin
           e.eval(env)
@@ -15,7 +16,14 @@ module XenConfigFileYouShouldntUse
   
   class AssignmentNode < ::Treetop::Runtime::SyntaxNode
     def eval(env={})
-      env[lhs.eval(env).to_sym] = rhs.eval(env)
+      env[:variables] << XenConfigFile::AST::Assignment.new(lhs.eval(env).to_sym, rhs.eval(env))
+      env
+    end
+  end
+
+  class ArrayAssignmentNode < ::Treetop::Runtime::SyntaxNode
+    def eval(env={})
+      env[:variables] << XenConfigFile::AST::ArrayAssignment.new(lhs.eval(env).to_sym, rhs.eval(env))
       env
     end
   end
@@ -53,6 +61,7 @@ module XenConfigFileYouShouldntUse
 
   class StringLiteralNode < ::Treetop::Runtime::SyntaxNode
     def eval(env={})
+      # XenConfigFile::AST::Variable.new(env[:lhs].value, text_value)
       text_value
     end
   end
