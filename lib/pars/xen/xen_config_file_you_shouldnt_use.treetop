@@ -4,7 +4,7 @@ grammar XenConfigFileYouShouldntUse
   end
   
   rule assignment
-    lhs:variable space_no_newline+ rhs:variable space* comment* <AssignmentNode>
+    space_no_newline* lhs:variable space_no_newline* '=' space_no_newline* rhs:variable space* comment* <AssignmentNode>
   end
   
   rule variable

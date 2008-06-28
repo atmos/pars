@@ -23,7 +23,7 @@ module XenConfigFileYouShouldntUse
   
   class AssignmentNode < ::Treetop::Runtime::SyntaxNode
     def eval(env={})
-      env[lhs.text_value.to_sym] = rhs.eval(env)
+      env[lhs.eval(env).text_value.to_sym] = rhs.eval(env)
     end
   end
   
@@ -41,7 +41,7 @@ module XenConfigFileYouShouldntUse
 
   class StringLiteralNode < ::Treetop::Runtime::SyntaxNode
     def eval(env={})
-      value.text_value
+      self
     end
   end
   
