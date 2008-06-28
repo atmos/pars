@@ -17,7 +17,8 @@ grammar XenConfigFileYouShouldntUse
   end
   
   rule string
-    ([A-Za-z_-])+ <StringLiteralNode>
+    ([A-Za-z_-])+ <StringLiteralNode> /
+    '"' (!'"' . / '\"')* '"' <DoubleQuotedStringLiteralNode>
   end
 
   rule array_element

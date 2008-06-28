@@ -8,9 +8,9 @@ describe XenConfigFileYouShouldntUse::AssignmentNode do
     @parser.should_not be_nil
   end
   describe " calling .parse" do
-    describe "with a single quoted string" do
+    describe "with a variable assigned to a number" do
       before(:all) do
-        @result = @parser.parse("name = 348\n")
+        @result = @parser.parse("cpu_number = 348\n")
       end
       it "should return a parse representation of the assignment" do
         @result.should_not be_nil
@@ -23,7 +23,7 @@ describe XenConfigFileYouShouldntUse::AssignmentNode do
           @evaluated_result = @result.eval({})
         end
         it "should return the value of the assignment" do
-          @evaluated_result[:name].should == 348
+          @evaluated_result[:cpu_number].should == 348
         end
       end
     end
