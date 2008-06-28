@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe XenConfigFileYouShouldntUse::CommentNode do
+describe XenConfigFileYouShouldntUse::AssignmentNode do
   before(:all) do
     @parser = Pars::Xen::Parser.new
   end
@@ -10,20 +10,20 @@ describe XenConfigFileYouShouldntUse::CommentNode do
   describe " calling .parse" do
     describe "with a comment line beginning with #" do
       before(:all) do
-        @result = @parser.parse("# zomg comment\n")
+        @result = @parser.parse("name = 'ey00-s00348'\n")
       end
       it "should return a parse representation of the assignment" do
         @result.should_not be_nil
       end
-      it "should return a comment node you shouldn't use" do
-        @result.should be_a_kind_of(XenConfigFileYouShouldntUse::CommentNode)
+      it "should return an assignment node you shouldn't use" do
+        @result.should be_a_kind_of(XenConfigFileYouShouldntUse::AssignmentNode)
       end
       describe " calling .eval" do
         before(:all) do
           @evaluated_result = @result.eval({})
         end
         it "should return the value of the assignment" do
-          @evaluated_result.should == "# zomg comment\n"
+          @evaluated_result.should == ""
         end
       end
     end

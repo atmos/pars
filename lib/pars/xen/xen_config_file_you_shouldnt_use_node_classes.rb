@@ -20,20 +20,34 @@ module XenConfigFileYouShouldntUse
       env
     end
   end
+  
+  class AssignmentNode < ::Treetop::Runtime::SyntaxNode
+    def eval(env={})
+      env[lhs.text_value.to_sym] = rhs.eval(env)
+    end
+  end
+  
   class CommentNode < ::Treetop::Runtime::SyntaxNode
     def eval(env={})
       text_value
     end
   end
+  
   class VariableNode < ::Treetop::Runtime::SyntaxNode
     def eval(env={})
       text_value
     end
   end
+
+  class StringLiteralNode < ::Treetop::Runtime::SyntaxNode
+    def eval(env={})
+      value.text_value
+    end
+  end
   
   class NumberNode < ::Treetop::Runtime::SyntaxNode
     def eval(env={})
-      text_value.to_i
+      values.text_value.to_i
     end
   end
 end
