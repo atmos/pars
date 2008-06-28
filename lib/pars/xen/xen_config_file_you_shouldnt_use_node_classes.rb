@@ -34,6 +34,12 @@ module XenConfigFileYouShouldntUse
     end
   end
   
+  class ArrayListNode < ::Treetop::Runtime::SyntaxNode
+    def eval(env={})
+      variables.flatten
+    end
+  end
+  
   class VariableNode < ::Treetop::Runtime::SyntaxNode
     def eval(env={})
       value.eval(env)

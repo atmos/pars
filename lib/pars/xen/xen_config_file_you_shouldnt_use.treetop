@@ -4,7 +4,16 @@ grammar XenConfigFileYouShouldntUse
   end
   
   rule assignment
-    space_no_newline* lhs:variable space_no_newline* '=' space_no_newline* rhs:variable space* comment* <AssignmentNode>
+    space_no_newline* lhs:variable space_no_newline* '=' space_no_newline* rhs:variable space* comment* <AssignmentNode> /
+    space_no_newline* lhs:variable space_no_newline* '=' space_no_newline* '[' space* rhs:array_list space* ']' space* comment* <AssignmentNode>
+  end
+  
+  rule array_list
+    space* value:variable space* remains:(',' space* var:array_list)* <ArrayListNode> {
+      def variables(env = {})
+        [value.eval(env)] + remains.elements.map { |command_and_var|  command_and_var.var.eval(env) }
+      end
+    }
   end
   
   rule variable
@@ -20,10 +29,6 @@ grammar XenConfigFileYouShouldntUse
     ([A-Za-z_-])+ <StringLiteralNode> /
     '"' (!'"' . / '\"')* '"' <DoubleQuotedStringLiteralNode> /
     '\'' (!'\'' .)* '\'' <SingleQuotedStringLiteralNode>
-  end
-
-  rule array_element
-    quoted_string / number
   end
 
   rule comment
