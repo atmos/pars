@@ -23,9 +23,6 @@ module XenConfigFileYouShouldntUse
   
   class AssignmentNode < ::Treetop::Runtime::SyntaxNode
     def eval(env={})
-      pp lhs
-      pp rhs
-      
       env[lhs.eval(env).to_sym] = rhs.eval(env)
       env
     end
